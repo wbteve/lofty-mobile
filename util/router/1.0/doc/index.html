@@ -1,0 +1,182 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+		<meta name="viewport" content="initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+
+		<title>lofty 前端基础框架</title>
+        <link rel="shortcut icon" href="favicon.ico" />
+		<link href="http://loftyjs.com/fdevlib/static/css/lofty/item.min.css" rel="stylesheet" />
+    </head>
+    <body>
+		<div class="doc" id="doc">
+			<div class="main">
+				<div class="style-menu" id="dpl_style_menu">
+					
+				</div>
+					
+				<h1>router : 路由器
+					<div class="authorInfo">
+						<a href="http://amos.im.alisoft.com/msg.aw?v=2&amp;uid=wtxidian&amp;site=cntaobao&amp;s=1" target="_blank">
+							<img width="17" border="0" align="absMiddle" height="16" src="http://img.china.alibaba.com/cms/upload/search/fdevlib/alitalk.png">
+							<span class="author">王涛</span>
+						</a>
+				    </div>
+				</h1>
+				
+				<div class="row-fluid">
+					<div class="span19 demo-container">
+					  <iframe id="dpl_demo" class="demo-frame" width="100%" height="100%" frameborder="0"></iframe>
+					</div>
+					<div class="span4 nav-list">
+					  <h2 class="nav-title">示例</h2>
+					  <div id="dpl_menubar">
+					  
+					    <!--demo页面的路径统一放在这个json变量里面定义-->
+						<script type="text/javascript">
+							var noDPL = true;
+							var demoArray = [
+								{'txt':'初始化定义路由规则', 'href':'../examples/router.html'},
+								{'txt':'动态创建/修改路由规则', 'href':'../examples/router-dynamic.html'},
+								{'txt':'主动路由到指定规则', 'href':'../examples/router-nav.html'},
+								{'txt':'on的方式注册回调函数', 'href':'../examples/router-on.html'},
+								{'txt':'显性停用 history', 'href':'../examples/router-stop.html'}
+							];
+						</script>
+					  </div>
+					</div>
+				</div>
+				
+				<h2>介绍</h2>
+				<ul>
+					<li>Router 组件是由 <a href="http://backbonejs.org/#Router" target="_blank">Backbone</a> 的 Router 类改造而来。当访问者点击浏览器前进后退按钮，或者输入URL，如果匹配一个路由，那么会触发该路由的回调函数。在单页面程序中 Router 有着广泛的使用场景。</li>
+					
+					<li>核心功能与 Backbone 的 Router 保持一致，初始化方式做一定修改，并在 options 中增加 history 参数，支持自动启用 history 功能。</li>
+				</ul>
+				
+
+				<h2>使用方法</h2>
+				
+<pre class="prettyprint linenums"> 
+define(['jquery', 'util/router/1.0'], function($, Router){
+
+	// Instantiate the router
+	var appRouter = new Router({
+	
+	   routes:{
+		"" : "initCallback",
+	　　　　"help" : "helpCallback",
+	　　　　"search/:query": "searchCb",
+	　　　　"search/:query/:page":"searchCallback"
+	　　},
+	
+	   initCallback:function(){
+		  $('#routerVal').html("hash为空");
+	　　},
+	
+	   helpCallback:function(){
+		  $('#routerVal').html("helpCallback");
+	　　},
+	
+	   searchCb:function(query) {
+		  $('#routerVal').html(query);
+	　　},
+	
+	   searchCallback:function(query,page) {
+		  $('#routerVal').html(page);
+	　　}
+	});
+});
+
+</pre>			
+
+			<h2>配置参数</h2>
+				
+			  <table class="table table-striped">
+				<thead>
+					  <tr>
+					  <th class="name">配置参数</th>
+					  <th class="param">参数类型</th>
+					  <th class="return">参数默认值</th>
+					  <th class="function">作用说明</th>
+					  </tr>
+				  </thead>
+				  <tbody>
+					  <tr>
+						  <td>routes</td>
+						  <td>JSON</td>
+						  <td>/</td>
+						  <td>配置具体的路由规则</td>
+					  </tr>  
+				  	  <tr>
+						  <td>history</td>
+						  <td>Boolean</td>
+						  <td>true</td>
+						  <td>Router初始化的时候自动启用 history</td>
+					  </tr>
+                 </tbody>
+			  </table>
+
+			<h2>公共方法</h2>
+				
+				<table class="table table-striped">
+				<thead>
+					  <tr>
+					  <th class="name">方法名称</th>
+					  <th class="param">入参说明</th>
+					  <th class="return">返回值</th>
+					  <th class="function">作用说明</th>
+					  </tr>
+				  </thead>
+				  <tbody>
+					  <tr>
+						  <td>route (route, name, callback)  </td>
+						  <td>route {String}:路由规则<br/>name {String}:规则名称<br/>callback {Function}:路由回调函数</td>
+						  <td>router 实例</td>
+						  <td>动态的创建或修改路由规则</td>
+					  </tr>
+					  <tr>
+						  <td>navigate (fragment, options)  </td>
+						  <td>fragment {String}:路由规则<br/>
+						  options {JSON}:规则配置项
+						  <ul>
+							<li>replace{Boolean}：如果为true，则替代当前历史状态（不是新增）</li>
+							<li>trigger{Boolean}：如果为true，则路由规则的回调函数将被触发</li>
+						  </ul>
+						  </td>
+						  <td>router 实例</td>
+						  <td>主动路由到某一个具体的路由规则。如果配置中传入"replace":true，则会替代当前的历史状态</td>
+					  </tr>
+                 </tbody>
+			  </table>		
+				
+			</div>
+			
+			<h2>事件</h2>
+				
+				<table class="table table-striped">
+				<thead>
+					  <tr>
+					  <th class="name">事件名称</th>
+					  <th class="function">事件说明</th>
+					  </tr>
+				  </thead>
+				  <tbody>
+					  <tr>
+						  <td>route </td>
+						  <td>任何路由规则被触发时都将触发该事件</td>
+					  </tr>
+					  <tr>
+						  <td>route:routerName </td>
+						  <td>指定路由规则被触发时所触发的事件</td>
+					  </tr> 
+                 </tbody>
+			  </table>
+			</div>
+		</div>
+		<script src="http://loftyjs.com/fdevlib/static/js/lofty/item.min.js"></script>
+		<script>
+			prettyPrint();
+		</script>
+</body>
+</html>

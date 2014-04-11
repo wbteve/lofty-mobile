@@ -1,0 +1,161 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<!-- Demo页面自身所需的基本样式，全局Reset文件在demo-mobile.min.css中引入 -->
+<link href="http://loftyjs.com/fdevlib/static/css/lofty/demo-mobile.min.css" rel="stylesheet" />
+
+<script src="http://style.c.aliimg.com/m/lofty/port/lofty.js"></script>
+<script src="http://style.c.aliimg.com/m/lofty/gallery/appframework/af.js"></script>
+
+<script>
+	lofty.config({
+		hasStamp: true
+	});
+</script>
+
+<style type="text/css" media="all">
+.offerImg{
+	width:220px;
+	height:170px;
+	margin:20px;
+	display:block;
+}
+.lazyload-textarea{
+	visibility: hidden;
+	height: 0;
+	width: 0;
+	padding: 0;
+	border: none;
+	margin: 0;
+}
+
+</style>
+</head>
+<body>
+<style type="text/css" media="all">
+body,ul,li {
+	padding:0;
+	margin:0;
+	border:0;
+}
+
+body {
+	font-size:12px;
+	-webkit-user-select:none;
+    -webkit-text-size-adjust:none;
+	font-family:helvetica;
+}
+#container {
+	position: relative;
+	height: 590px;
+}
+#header {
+	position:absolute; z-index:2;
+	top:0; left:0;
+	width:100%;
+	height:45px;
+	line-height:45px;
+	background-color:#d51875;
+	background-image:-webkit-gradient(linear, 0 0, 0 100%, color-stop(0, #fe96c9), color-stop(0.05, #d51875), color-stop(1, #7b0a2e));
+	background-image:-moz-linear-gradient(top, #fe96c9, #d51875 5%, #7b0a2e);
+	background-image:-o-linear-gradient(top, #fe96c9, #d51875 5%, #7b0a2e);
+	padding:0;
+	color:#eee;
+	font-size:20px;
+	text-align:center;
+}
+
+#header a {
+	color:#f3f3f3;
+	text-decoration:none;
+	font-weight:bold;
+	text-shadow:0 -1px 0 rgba(0,0,0,0.5);
+}
+
+#wrapper {
+	position:absolute; z-index:1;
+	top:45px; bottom:0;
+	width:100%;
+	height: 500px;
+	background:#ddd;
+	overflow:auto;
+}
+.info {
+	width: 200px;
+	float: right;
+	z-index: 10000;
+	position: relative;
+}
+img {
+	width: 400px;
+	height: 300px;
+}
+
+.myScrollbarV{
+	position:absolute;z-index:100;width:8px;bottom:7px;top:2px;right:1px;
+}
+
+.myScrollbarV > div {
+	position:absolute;
+	z-index:100;
+	width:100%;
+	/* The following is probably what you want to customize */
+	background:-webkit-gradient(linear, 0 0, 100% 0, from(#f00), to(#900));
+	border:1px solid #800;
+	-webkit-background-clip:padding-box;
+	-webkit-box-sizing:border-box;
+	-webkit-border-radius:4px;
+	-webkit-box-shadow:inset 1px 1px 0 rgba(255,255,255,0.5);
+}
+</style>
+
+</head>
+<body>
+<div id="container">
+	<div id="header"><a href="http://cubiq.org/iscroll">Scroller (Custom Scrollbar)</a></div>
+	<div id="wrapper">
+		<div id="scroller">
+			<img class="offerImg" src="http://i04.c.aliimg.com/img/ibank/2011/560/637/457736065_1714284298.220x220.jpg"></img>
+			<img class="offerImg" src="http://i03.c.aliimg.com/img/ibank/2012/446/243/565342644_1906858889.220x220.jpg"></img>
+			<img class="offerImg" src="http://i04.c.aliimg.com/img/ibank/2013/283/108/911801382_1481338258.220x220.jpg"></img>
+			<img class="offerImg" src="http://i03.c.aliimg.com/img/ibank/2013/260/755/962557062_104937165.220x220.jpg"></img>
+			<img class="offerImg" src="http://i03.c.aliimg.com/img/ibank/2012/016/106/669601610_2019159583.220x220.jpg"></img>
+			<img class="offerImg" src="http://i05.c.aliimg.com/img/ibank/2012/357/866/709668753_1047023616.220x220.jpg"></img>
+			<img class="offerImg" src="http://i02.c.aliimg.com/img/ibank/2012/291/718/730817192_722888204.220x220.jpg"></img>
+			<img class="offerImg" src="http://i02.c.aliimg.com/img/ibank/2011/824/757/462757428_1399142984.220x220.jpg"></img>
+			<img class="offerImg" src="http://i05.c.aliimg.com/img/ibank/2011/772/148/465841277_789219996.220x220.jpg"></img>
+			<img class="offerImg" src="http://i04.c.aliimg.com/img/ibank/2011/560/637/457736065_1714284298.220x220.jpg"></img>
+			<img class="offerImg" src="http://i05.c.aliimg.com/img/ibank/2013/304/387/831783403_1915530726.220x220.jpg"></img>
+			<img class="offerImg" src="http://img.china.alibaba.com/img/ibank/2012/149/146/639641941_1913313061.220x220.jpg"></img>
+			<img class="offerImg" src="http://img.china.alibaba.com/img/ibank/2013/166/793/963397661_536505440.220x220.jpg"></img>
+			<img class="offerImg" src="http://i03.c.aliimg.com/img/ibank/2013/530/248/847842035_1398448438.220x220.jpg"></img>
+			<img class="offerImg" src="http://i04.c.aliimg.com/img/ibank/2013/283/108/911801382_1481338258.220x220.jpg"></img>
+			<img class="offerImg" src="http://i03.c.aliimg.com/img/ibank/2013/260/755/962557062_104937165.220x220.jpg"></img>
+			<img class="offerImg" src="http://i04.c.aliimg.com/img/ibank/2011/560/637/457736065_1714284298.220x220.jpg"></img>
+			<img class="offerImg" src="http://i03.c.aliimg.com/img/ibank/2012/016/106/669601610_2019159583.220x220.jpg"></img>
+			<img class="offerImg" src="http://i05.c.aliimg.com/img/ibank/2012/357/866/709668753_1047023616.220x220.jpg"></img>
+			<img class="offerImg" src="http://i02.c.aliimg.com/img/ibank/2012/291/718/730817192_722888204.220x220.jpg"></img>
+			<img class="offerImg" src="http://i02.c.aliimg.com/img/ibank/2011/824/757/462757428_1399142984.220x220.jpg"></img>
+			<img class="offerImg" src="http://i05.c.aliimg.com/img/ibank/2011/772/148/465841277_789219996.220x220.jpg"></img>
+			<img class="offerImg" src="http://i04.c.aliimg.com/img/ibank/2011/560/637/457736065_1714284298.220x220.jpg"></img>
+			<img class="offerImg" src="http://img.china.alibaba.com/img/offer/47/55/85/83/4/475585834.220x220.jpg"></img>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+define(['lofty/ui/scroller/1.0/scroller'], function(Scroller) {
+		
+	var myScroll = new Scroller({
+		container: '#wrapper',
+		scrollbarClass: "myScrollbar"
+	})
+})
+</script>
+<script src="http://loftyjs.com/fdevlib/static/js/lofty/demo.min.js" type="text/javascript"></script>
+</body>
+</html>

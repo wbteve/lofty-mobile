@@ -1,0 +1,199 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+		<title>lofty 前端基础框架</title>
+        <link rel="shortcut icon" href="favicon.ico" />
+		<link href="http://loftyjs.com/fdevlib/static/css/lofty/item.min.css" rel="stylesheet" />
+    </head>
+    <body>
+		<div class="doc" id="doc">
+			<div class="main">
+				<h1>autocomplete : 自动补全
+					<div class="authorInfo">
+						<a href="aliim:sendmsg?touid=cntaobaoqcp%E5%B1%88%E4%BC%A0%E9%B9%8F&amp;siteid=cntaobao&amp;fenliu=1&amp;status=1" target="_blank">
+							<img width="17" border="0" align="absMiddle" height="16" src="http://img.china.alibaba.com/cms/upload/search/fdevlib/alitalk.png">
+							<span class="author">屈传鹏</span>
+						</a>
+					</div>
+				</h1>
+				
+				<div class="row-fluid">
+					<div class="span19 demo-container">
+					  <iframe id="dpl_demo" class="demo-frame" width="100%" height="100%" frameborder="0"></iframe>
+					</div>
+					<div class="span4 nav-list">
+					  <h2 class="nav-title">示例</h2>
+					  <div id="dpl_menubar">
+					  
+					    <!--demo页面的路径统一放在这个json变量里面定义-->
+						<script type="text/javascript">
+							var demoArray = [
+								{'txt':'异步获取数据', 'href':'../examples/yibu.html'},
+								{'txt':'同步获取数据', 'href':'../examples/tongbu.html'}
+							];
+						</script>
+					  </div>
+					</div>
+				</div>
+				
+				<h2>介绍</h2>
+				<p>能根据同步或异步过滤进行输入的自动补全</p>
+				
+				<h2>使用方法</h2>
+				
+<pre class="prettyprint linenums"> 
+define(['fui/autocomplete/1.0'], function(Autocomplete){
+	var data =  [
+					{value:"shanghai",label:"上海",alias:['sh','shh','上海']},
+					{value:"xian",label:"西安",alias:['xa','西安']},
+					{value:"chengdu",label:"成都",alias:['cd','chd','成都']},
+					{value:"shenzhen",label:"深圳",alias:['sz','shzh','szh','深圳']},
+					{value:"beijing",label:"北京",alias:['bj','北京']},
+					{value:"hangzhou",label:"杭州",alias:['hz','杭州']}
+				];
+
+	var autocomplete = new Autocomplete({
+		target:"#test1",
+		dataSource:data
+	});
+	
+});
+
+</pre>			
+
+			<h2>配置参数</h2>
+				
+			  <table class="table table-striped">
+				<thead>
+					  <tr>
+					  <th class="name">配置参数</th>
+					  <th class="param">参数类型/可选值</th>
+					  <th class="return">参数默认值</th>
+					  <th class="function">作用说明</th>
+					  </tr>
+				  </thead>
+				  <tbody>
+					  <tr>
+						  <td>target </td>
+						  <td>string</td>
+						  <td>""</td>
+						  <td>需要自动补全功能的目标元素的jQuery选择器</td>
+					  </tr>
+					  <tr>
+						  <td>dLeft </td>
+						  <td>number</td>
+						  <td>0</td>
+						  <td>下拉框的位置向左微调的像素数，负值代表向右微调</td>
+					  </tr>
+					  <tr>
+						  <td>dTop </td>
+						  <td>number</td>
+						  <td>0</td>
+						  <td>下拉框的位置向上微调的像素数，负值代表向下微调</td>
+					  </tr>
+					  
+					  <tr>
+						  <td>minLength </td>
+						  <td>number</td>
+						  <td>1</td>
+						  <td>target中字符数的最短长度,当达到minLength时触发采集数据的逻辑</td>
+					  </tr>
+					  
+					  <tr>
+						  <td>filter </td>
+						  <td>function</td>
+						  <td>null</td>
+						  <td>当设置filter时,将对数据集进行过滤</td>
+					  </tr>
+					  
+					  <tr>
+						  <td>dataSource </td>
+						  <td>array||function</td>
+						  <td>/</td>
+						  <td>数据源，当异步取数据源时，需要通过触发tigger('dataReady',data)事件来填充数据</td>
+					  </tr>
+					  
+					  <tr>
+						  <td>renderList </td>
+						  <td>function</td>
+						  <td>显示每一项的label值</td>
+						  <td>自定义下拉框内容</td>
+					  </tr>
+					  
+					  <tr>
+						  <td>itemClass </td>
+						  <td>string</td>
+						  <td>"fui-autocomplete-item"</td>
+						  <td>下拉框中每一项的默认class</td>
+					  </tr>
+					  
+					  <tr>
+						  <td>classPrefix</td>
+						  <td>string</td>
+						  <td>'fui-autocomplete'</td>
+						  <td>class前缀</td>
+					  </tr>
+                 </tbody>
+			  </table>
+			  
+				<h2>公共方法</h2>
+				
+				<table class="table table-striped">
+				<thead>
+					  <tr>
+					  <th class="name">方法名称</th>
+					  <th class="param">入参说明</th>
+					  <th class="return">返回值</th>
+					  <th class="function">作用说明</th>
+					  </tr>
+				  </thead>
+				  <tbody>
+					  <tr>
+						  <td>resetPosition()</td>
+						  <td>/</td>
+						  <td>组件实例本身</td>
+						  <td>重新定位下拉框的位置</td>
+					  </tr>
+					  <tr>
+						  <td>hide()</td>
+						  <td>/</td>
+						  <td>/</td>
+						  <td>隐藏下拉选项</td>
+					  </tr>
+					 
+                 </tbody>
+			  </table>
+
+
+				<h2>事件</h2>
+				
+				<table class="table table-striped">
+				<thead>
+					  <tr>
+					  <th class="name">事件名称</th>
+					  <th class="function">事件说明</th>
+					  </tr>
+				  </thead>
+				  <tbody>
+					  <tr>
+						  <td>dataReady</td>
+						  <td>组件使用者需要触发的事件，使用场景：当异步取到数据时，需要触发此事件来让组件渲染下拉框内容，参数：dataList</td>
+					  </tr>
+					  <tr>
+						  <td>select</td>
+						  <td>当选中时，组件会触发该事件，用户可以监听</td>
+					  </tr>
+					  
+					  
+                 </tbody>
+			  </table>
+			  
+			</div>
+		</div>
+		<script src="http://loftyjs.com/fdevlib/static/js/lofty/item.min.js"></script>
+		<script>
+			prettyPrint();
+		</script>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+	<title>lofty 前端基础框架</title>
+	
+	<!-- Demo页面自身所需的基本样式，全局Reset文件在demo-mobile.min.css中引入 -->
+	<link href="http://loftyjs.com/fdevlib/static/css/lofty/demo-mobile.min.css" rel="stylesheet" />
+    <!-- 实际使用时将 $SkinType 替换为 "back" 或 "front" -->
+    <script type="text/javascript">
+        var cssUrls = "http://style.c.aliimg.com/m/lofty/ui/limiter/1.0/limiter.css";
+    </script>
+    <script src="http://style.c.aliimg.com/m/lofty/port/lofty.js"></script>
+    <script src="http://style.c.aliimg.com/m/lofty/gallery/appframework/af.js"></script>
+</head>
+<body>
+
+
+<div class="demo-content">
+<div class="demo-widget">
+ <div class="demo-widget-dom">	
+<script type="text/javascript">
+    af('body').on('click', '#pwd-limiter', function() {
+        af(this).toggleClass('fui-limiter-pwd-left').toggleClass('fui-limiter-pwd-right');
+    })
+</script>
+
+<div id="pwd-limiter" class="fui-limiter-pwd fui-limiter-pwd-left">
+    <span class="fui-limiter-dot"></span>
+    <span class="fui-limiter-text">abc</span>
+    <div class="fui-limiter-dice"></div>
+</div>
+  </div>
+ </div>
+
+<div class="demo-widget">
+ <div class="demo-widget-dom">  
+<script type="text/javascript">
+    af('body').on('click', '#pwd-limiter2', function() {
+        af(this).toggleClass('fui-limiter-left').toggleClass('fui-limiter-right');
+    })
+</script>
+
+<div id="pwd-limiter2" class="fui-limiter fui-limiter-left">
+    <div class="fui-limiter-dice"></div>
+</div>
+  </div>
+ </div>
+
+</div>
+<!-- Demo页面自身所需的JS，实际项目中无需引入 -->
+<script src="http://loftyjs.com/fdevlib/static/js/lofty/demo.min.js" type="text/javascript"></script>	
+</body>
+</html>

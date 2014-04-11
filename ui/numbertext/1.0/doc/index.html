@@ -1,0 +1,75 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+		<title>lofty 前端基础框架</title>
+        <link rel="shortcut icon" href="favicon.ico" />
+		<link href="http://loftyjs.com/fdevlib/static/css/lofty/item.min.css" rel="stylesheet" />
+    </head>
+    <body>
+		<div class="doc" id="doc">
+			<div class="main">
+				<h1>numbertext : 数字加减组件
+					<span class="mobile">DPL</span>
+					<div class="authorInfo">
+						<a href="aliim:sendmsg?touid=cntaobaoqcp%E5%B1%88%E4%BC%A0%E9%B9%8F&amp;siteid=cntaobao&amp;fenliu=1&amp;status=1" target="_blank">
+							<img width="17" border="0" align="absMiddle" height="16" src="http://img.china.alibaba.com/cms/upload/search/fdevlib/alitalk.png">
+							<span class="author">屈传鹏</span>
+						</a>
+					</div>
+				</h1>
+				
+				<div class="row-fluid">
+					<div class="span19 demo-container">
+					  <iframe id="dpl_demo" class="demo-frame" width="100%" height="100%" frameborder="0"></iframe>
+					</div>
+					<div class="span4 nav-list">
+					  <h2 class="nav-title">示例</h2>
+					  <div id="dpl_menubar">
+					  
+					    <!--demo页面的路径统一放在这个json变量里面定义-->
+						<script type="text/javascript">
+							var demoArray = [
+								{'txt':'Demo', 'href':'../examples/demo.html'}
+							];
+						</script>
+					  </div>
+					</div>
+				</div>
+				
+				<h2>介绍</h2>
+				<p>数字加减的DPL，JS逻辑需要业务自己实现</p>
+				
+				<h2>使用方法</h2>
+				
+<pre class="prettyprint linenums"> 
+直接拷贝demo中的DOM结构，并引入默认的CSS： 
+&lt;link rel="stylesheet" href="http://style.c.aliimg.com/m/lofty/ui/numbertext/1.0/numbertext.css" /&gt;
+
+<br/>
+如果需要自定义颜色，宽度，高度等 ，可以新建 less 文件，并自定义部分变量：
+
+@import url(http://style.c.aliimg.com/m/lofty/ui/numbertext/1.0/numbertext.less);
+
+@numberHeight:60px;  //数字文本域的高度
+@numberWidth:114px;  //数字文本域的宽度
+@numberBgColor:#fff; //数字文本域的背景色
+@numberPadding:0 3px; //数字文本域的padding值
+@optionBgColor:#fafafa; //操作按钮背景色
+@optionActiveBgColor:#eaeaea; //点击操作按钮时的背景色
+@borderColor:#d9d9d9; //border的颜色
+@optionTxtColor:#999; //"+"和"-"的字体颜色
+@optionTxtActiveColor:#999; //"+"和"-"的字体颜色
+@borderRadius:3px;    //圆角的大小
+
+</pre>			
+
+			
+			</div>
+		</div>
+		<script src="http://loftyjs.com/fdevlib/static/js/lofty/item.min.js"></script>
+		<script>
+			prettyPrint();
+		</script>
+</body>
+</html>

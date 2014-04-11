@@ -1,0 +1,164 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+		<meta charset="utf-8"/>
+		<meta name="viewport" content="initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+
+		<title>lofty 前端基础框架</title>
+        <link rel="shortcut icon" href="favicon.ico" />
+		<link href="http://loftyjs.com/fdevlib/static/css/lofty/item.min.css" rel="stylesheet" />
+    </head>
+    <body>
+		<div class="doc" id="doc">
+			<div class="main">
+				<h1>storage : 跨域的localstorage
+					<div class="authorInfo">
+						<a href="aliim:sendmsg?touid=cntaobaoqcp%E5%B1%88%E4%BC%A0%E9%B9%8F&amp;siteid=cntaobao&amp;fenliu=1&amp;status=1" target="_blank">
+							<img width="17" border="0" align="absMiddle" height="16" src="http://img.china.alibaba.com/cms/upload/search/fdevlib/alitalk.png">
+							<span class="author">屈传鹏</span>
+						</a>
+					</div>
+				</h1>
+				
+				<div class="row-fluid">
+					<div class="span19 demo-container">
+					  <iframe id="dpl_demo" class="demo-frame" width="100%" height="100%" frameborder="0"></iframe>
+					</div>
+					<div class="span4 nav-list">
+					  <h2 class="nav-title">示例</h2>
+					  <div id="dpl_menubar">
+					  
+					    <!--demo页面的路径统一放在这个json变量里面定义-->
+						<script type="text/javascript">
+							var demoArray = [
+								{'txt':'demo', 'href':'../examples/demo.html'}
+							];
+						</script>
+					  </div>
+					</div>
+				</div>
+				
+				<h2>介绍</h2>
+				<p>可跨域取localstorage，兼容原生的localstorage接口（length除外）</p>
+				
+				<h2>使用方法</h2>
+				
+<pre class="prettyprint linenums"> 
+1.如果只调用本域的localstorage内容，则接口与原生localstorage的一致
+2.假设在A域中调用B域中的内容，需要在B域中部署代理页面，
+  下载代理页面 ：http://style.c.aliimg.com/m/lofty/util/storage/1.0/proxy/localstorage.html
+  保存页面源代码放到B域的根目录的proxy文件夹下，取名为 localstorage.html，例如B域为s.1688.com 则代理页面的url为
+  http://s.1688.com/proxy/localstorage.html
+
+define(['util/storage/1.0'], function(localStorage){
+	localStorage.getItem(key);
+	
+	localStorage.getItem(key,{
+		domain:B,
+		success:function(){}
+	});
+});
+</pre>
+				<h2>特别注意</h2>
+				
+<pre class="prettyprint linenums"> 
+1.安全问题考虑
+  如果要部署代理页面在自己的域中，就意味着该域中localstorage中的内容都是公开的，其他网站可以任意获取到，
+  若不想泄露这些数据，则后端需要配合过滤该代理页面的请求，根据请求中的refer字段，判断来源，可用白名单控制	
+2.当跨域取数据时为异步接口，需要提供回调方法
+
+</pre>			
+
+			<h2>配置参数</h2>
+				
+			  <table class="table table-striped">
+				<thead>
+					  <tr>
+					  <th class="name">配置参数</th>
+					  <th class="param">参数类型/可选值</th>
+					  <th class="return">参数默认值</th>
+					  <th class="function">作用说明</th>
+					  </tr>
+				  </thead>
+				  <tbody>
+					  <tr>
+						  <td>domain</td>
+						  <td>string</td>
+						  <td>""</td>
+						  <td>跨域时必选，设置目标的域</td>
+					  </tr>
+					  <tr>
+						  <td>success</td>
+						  <td>function</td>
+						  <td></td>
+						  <td>跨域操作成功后的回调方法：可选</td>
+					  </tr>
+                 </tbody>
+			  </table>
+			  
+				<h2>公共方法</h2>
+				
+				<table class="table table-striped">
+				<thead>
+					  <tr>
+					  <th class="name">方法名称</th>
+					  <th class="param">入参说明（参数中的opt的解释参见上面的"配置参数"）</th>
+					  <th class="return">返回值</th>
+					  <th class="function">作用说明</th>
+					  </tr>
+				  </thead>
+				  <tbody>
+					  <tr>
+						  <td>getItem(key,opt)</td>
+						  <td>key:存储的键</td>
+						  <td>键对应的值</td>
+						  <td>当没有opt参数时，则调用原生的接口</td>
+					  </tr>
+					  <tr>
+						  <td>getItem(key,opt)</td>
+						  <td>key:存储的键</td>
+						  <td>键对应的值</td>
+						  <td>当没有opt参数时，则调用原生的接口</td>
+					  </tr>
+					  <tr>
+						  <td>setItem(key,val,opt)</td>
+						  <td>key:存储的键<br />val:存储的值</td>
+						  <td>/</td>
+						  <td>当没有opt参数时，则调用原生的接口</td>
+					  </tr>
+					  <tr>
+						  <td>clear(opt)</td>
+						  <td>/</td>
+						  <td>/</td>
+						  <td>当没有opt参数时，清空本域中的localstorage中的内容，若设置了opt，则清空对应的域中的localstorage</td>
+					  </tr>
+					  <tr>
+						  <td>key(index,opt)</td>
+						  <td>index:获取对应域中localstorage第index个的key的名字</td>
+						  <td>键的名字</td>
+						  <td>当没有opt参数时，则调用原生的接口</td>
+					  </tr>
+					 
+					  <tr>
+						  <td>length(opt)</td>
+						  <td>/</td>
+						  <td>获取对应域中localstorage中存储的键值对的个数</td>
+						  <td>原生的length是个属性，此处不兼容</td>
+					  </tr>
+					  <tr>
+						  <td>removeItem(key,opt)</td>
+						  <td>key:要删除的键</td>
+						  <td>/</td>
+						  <td>当没有opt参数时，则调用原生的接口</td>
+					  </tr>
+					  
+                 </tbody>
+			  </table>
+			</div>
+		</div>
+		<script src="http://loftyjs.com/fdevlib/static/js/lofty/item.min.js"></script>
+		<script>
+			prettyPrint();
+		</script>
+</body>
+</html>

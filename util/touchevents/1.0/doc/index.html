@@ -1,0 +1,121 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+		<meta charset="utf-8"/>
+		<meta name="viewport" content="initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+
+		<title>lofty 前端基础框架</title>
+        <link rel="shortcut icon" href="favicon.ico" />
+		<link href="http://loftyjs.com/fdevlib/static/css/lofty/item.min.css" rel="stylesheet" />
+    </head>
+    <body>
+		<div class="doc" id="doc">
+			<div class="main">
+				<div class="style-menu" id="dpl_style_menu">
+					
+				</div>
+					
+				<h1>touchEvents : touch事件组件
+					<div class="authorInfo">
+						<a href="http://amos.im.alisoft.com/msg.aw?v=2&amp;uid=wtxidian&amp;site=cntaobao&amp;s=1" target="_blank">
+							<img width="17" border="0" align="absMiddle" height="16" src="http://img.china.alibaba.com/cms/upload/search/fdevlib/alitalk.png">
+							<span class="author">王涛</span>
+						</a>
+				    </div>
+				</h1>
+				
+				<div class="row-fluid">
+					<div class="span19 demo-container">
+					  <iframe id="dpl_demo" class="demo-frame" width="100%" height="100%" frameborder="0"></iframe>
+					</div>
+					<div class="span4 nav-list">
+					  <h2 class="nav-title">示例</h2>
+					  <div id="dpl_menubar">
+					  
+					    <!--demo页面的路径统一放在这个json变量里面定义-->
+						<script type="text/javascript">
+							var noDPL = true;
+							var demoArray = [
+								{'txt':'tap、longTap事件', 'href':'../examples/tap.html'},
+								{'txt':'doubleTap、singleTap事件', 'href':'../examples/doubleTap.html'},
+								{'txt':'swip事件', 'href':'../examples/swip.html'}
+							];
+						</script>
+					  </div>
+					</div>
+				</div>
+				
+				<h2>介绍</h2>
+				<p>开发的时候可能会需要一些较复杂的事件，例如双击屏幕事件、长按事件或者滑动事件，这些事件并不是标准事件，浏览器并没有相应的实现，使用这个组件可以实现这些事件。</p>
+				
+				<h2>使用方法</h2>
+				
+<pre class="prettyprint linenums"> 
+define(['jquery'], function($){
+	$('#test').bind('tap',function(){
+		alert("tap!")
+	})
+	
+	$('#test').bind('longTap',function(){
+		alert("longTap!")
+	})
+});
+
+</pre>			
+
+			<h2>事件</h2>
+				
+				<table class="table table-striped">
+				<thead>
+					  <tr>
+					  <th class="name">事件名称</th>
+					  <th class="function">事件说明</th>
+					  </tr>
+				  </thead>
+				  <tbody>
+					  <tr>
+						  <td>tap </td>
+						  <td>触摸单击事件，若监听该事件，doubleTap事件将不触发</td>
+					  </tr>
+					  <tr>
+						  <td>singleTap </td>
+						  <td>触摸单击事件</td>
+					  </tr> 
+					  <tr>
+						  <td>doubleTap </td>
+						  <td>触摸双击事件</td>
+					  </tr> 
+					  <tr>
+						  <td>longTap </td>
+						  <td>长按事件</td>
+					  </tr> 
+					  <tr>
+						  <td>swip </td>
+						  <td>触摸滑动事件，手指按住屏幕左右滑动的时候会触发事件</td>
+					  </tr> 
+					  <tr>
+						  <td>swipeLeft </td>
+						  <td>触摸向左滑动事件</td>
+					  </tr> 
+					  <tr>
+						  <td>swipeRight </td>
+						  <td>触摸向右滑动事件</td>
+					  </tr> 
+					  <tr>
+						  <td>swipeUp </td>
+						  <td>触摸向上滑动事件</td>
+					  </tr> 
+					  <tr>
+						  <td>swipeDown </td>
+						  <td>触摸向下滑动事件</td>
+					  </tr> 
+                 </tbody>
+			  </table>
+			</div>
+		</div>
+		<script src="http://loftyjs.com/fdevlib/static/js/lofty/item.min.js"></script>
+		<script>
+			prettyPrint();
+		</script>
+</body>
+</html>

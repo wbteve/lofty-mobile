@@ -1,0 +1,46 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>lofty 前端基础框架</title>
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+	<!-- Demo页面自身所需的基本样式，全局Reset文件在demo-mobile.min.css中引入 -->
+	<link href="http://loftyjs.com/fdevlib/static/css/lofty/demo-mobile.min.css" rel="stylesheet" />
+	
+	<script src="http://style.c.aliimg.com/m/lofty/port/lofty.js"></script>
+	<script src="http://style.c.aliimg.com/m/lofty/gallery/appframework/af.js"></script>
+	<!-- 实际使用时将 $SkinType 替换为 "back" 或 "front" -->
+	<script type="text/javascript">
+		var cssUrls = ["http://style.c.aliimg.com/m/lofty/ui/numbertext/1.0/numbertext.css"];
+	</script>
+
+</head>
+
+<body style="height: 200px;">
+<div class="demo-content">
+	<div class="demo-widget">
+		<div class="demo-widget-dom">
+			<div class="fui-number fd-clr">
+				<a class="fui-number-down"></a>
+				<input class="fui-number-text" type="text" value="8"></input>
+				<a class="fui-number-up"></a>
+			</div>
+		</div>		
+	</div>	
+
+	<div class="demo-widget">
+		<div class="demo-widget-dom">
+			<div class="fui-number fd-clr">
+				<a class="fui-number-down"></a>
+				<input class="fui-number-text fui-number-text-err" type="text" value="NaN"></input>
+				<a class="fui-number-up"></a>
+			</div>
+		</div>		
+	</div>	
+</div>
+
+
+<!-- Demo页面自身所需的JS，实际项目中无需引入 -->
+<script src="http://loftyjs.com/fdevlib/static/js/lofty/demo.min.js" type="text/javascript"></script>	
+</body>
+</html>

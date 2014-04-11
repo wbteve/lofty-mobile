@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>lofty 前端基础框架</title>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+
+	<!-- Demo页面自身所需的基本样式，全局Reset文件在demo-mobile.min.css中引入 --->
+	<link href="http://loftyjs.com/fdevlib/static/css/lofty/demo-mobile.min.css" rel="stylesheet" />
+</head>
+<body>
+
+   <div id="result"></div>
+	<script src="http://style.c.aliimg.com/m/lofty/port/lofty.js"></script>
+    <script src="http://style.c.aliimg.com/m/lofty/gallery/appframework/af.js"></script>
+		
+
+   <script type="text/javascript">
+
+     define(['jquery', 'alicn/now/1.0'], function ( $, Now ) {
+
+       var result = $('#result');
+
+       function handler (serverTimeMillis) {
+         // 取时间不成功
+         if (!serverTimeMillis) {
+           result.append('取服务器时间失败，请重试！');
+           return;
+         }
+
+         var offset = serverTimeMillis - (new Date()).getTime();
+
+         result.append('您电脑的时间比服务器时间' + (offset > 0 ? '慢' : '快') + '了' + offset + '毫秒。');
+       }
+
+       Now.now(handler);
+     });
+
+   </script>
+     <!-- Demo页面自身所需的JS，实际项目中无需引入 --->
+<script src="http://loftyjs.com/fdevlib/static/js/lofty/demo.min.js" type="text/javascript"></script>	
+</body>
+</html>

@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+	<title>lofty 前端基础框架</title>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+    <link rel="shortcut icon" href="favicon.ico" />
+    <link href="http://loftyjs.com/fdevlib/static/css/lofty/item.min.css" rel="stylesheet" />
+</head>
+<body>
+<div class="doc" id="doc">
+    <div class="main">
+        <!--<div class="style-menu" id="dpl_style_menu">
+
+        </div> -->
+
+        <h1>selector : 单选/多选
+            <div class="authorInfo">
+                <a href="http://amos.im.alisoft.com/msg.aw?v=2&amp;uid=yuanlihao1988&amp;site=cntaobao&amp;s=1" target="_blank">
+                    <img width="17" border="0" align="absMiddle" height="16" src="http://img.china.alibaba.com/cms/upload/search/fdevlib/alitalk.png">
+                    <span class="author">袁力皓</span>
+                </a>
+            </div>
+        </h1>
+
+        <div class="row-fluid">
+            <div class="span19 demo-container">
+                <iframe id="dpl_demo" class="demo-frame" width="100%" height="100%" frameborder="0"></iframe>
+            </div>
+            <div class="span4 nav-list">
+                <h2 class="nav-title">示例</h2>
+                <div id="dpl_menubar">
+
+                    <!--demo页面的路径统一放在这个json变量里面定义-->
+                    <script type="text/javascript">
+                        var demoArray = [
+                            {'txt':'按钮大本营', 'href':'../examples/demo.html'},
+                            {'txt':'确认下载', 'href':'../examples/confirm.html'},
+                            {'txt':'确认删除', 'href':'../examples/delete.html'},
+                            {'txt':'地域选择', 'href':'../examples/select.html'}
+                        ];
+                    </script>
+                </div>
+            </div>
+        </div>
+
+        <h2>介绍</h2>
+        <p>对话框组件</p>
+
+        <h2>使用方法</h2>
+				
+<pre class="prettyprint linenums"> 
+    define(['fui/popup/1.0','jquery'], function(Popup,$){
+        var onEvent = $.os.supportsTouch ? 'tap' : 'click';
+        var popup = new Popup({
+            tpl:".fui-dialog-body",
+            isModal:true,
+            buttons:[
+                {
+                    'event':onEvent,//事件类型
+                    'selector':'.fui-btn1',//要绑定事件的元素
+                    'callback':function(paramObj){//事件的回调函数
+                        alert(paramObj.name);
+                        console.log(this);//这里的this指向的是当前的组件实例
+                    },
+                    'paramObj':{//回调函数要传入的参数(封装成对象便于管理)
+                        'name':'按钮1'
+                    }
+                },
+                {
+                    'event':onEvent,
+                    'selector':'.fui-btn2',
+                    'callback':function(popup,paramObj){
+                        alert(paramObj.name);
+                    },
+                    'paramObj':{
+                        'name':'按钮2'
+                    }
+                },
+                {
+                    'event':onEvent,
+                    'selector':'.fui-btn3',
+                    'callback':function(popup,paramObj){
+                        alert(paramObj.name);
+                    },
+                    'paramObj':{
+                        'name':'insertBtn'
+                    }
+                },
+                {
+                    'event':onEvent,
+                    'selector':'.d-close',
+                    'callback':function(popup,paramObj){
+                        this.hide();
+                    }
+                }
+            ]
+        });
+        //dialog显示
+        popup.show();
+        $(".show-dialog").on(onEvent,function(){
+            popup.show();
+        });
+    });
+</pre>
+        <h2>配置参数</h2>
+
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th class="name">配置参数</th>
+                <th class="param">参数类型/可选值</th>
+                <th class="return">参数默认值</th>
+                <th class="function">作用说明</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>tpl </td>
+                <td>String</td>
+                <td>/</td>
+                <td>popup内容的class或id，也可以传入自定义的模板字符串</td>
+            </tr>
+            <tr>
+                <td>zindex </td>
+                <td>number</td>
+                <td>1688</td>
+                <td>浮层的z-index值</td>
+            </tr>
+            <tr>
+                <td>isModal</td>
+                <td>Boolen</td>
+                <td>true</td>
+                <td>是否有浮层蒙板</td>
+            </tr>
+            <tr>
+                <td>maskAttr</td>
+                <td>Object</td>
+                <td>{
+                    maskColor:'#000',
+                    maskOpacity:"0.3"
+                    }</td>
+                <td>浮层蒙板的style样式</td>
+            </tr>
+            <tr>
+                <td>buttons </td>
+                <td>[{},{}...]</td>
+                <td>/</td>
+                <td>给组件内部的元素绑定事件和回调</td>
+            </tr>
+            <tr>
+                <td>timers</td>
+                <td>[{},{}...]</td>
+                <td>/</td>
+                <td>给组件设置延时回调的函数</td>
+            </tr>
+            <tr>
+                <td>beforeOpen</td>
+                <td>Function</td>
+                <td>function(popup){
+                        return true;
+                    }</td>
+                <td>浮层打开前的事件回调，返回Boolean值。若返回false，则浮层不打开</td>
+            </tr>
+            <tr>
+                <td>afterOpen</td>
+                <td>Function</td>
+                <td>无</td>
+                <td>浮层打开后的事件回调，比如生成滚动条之类的操作可在此执行。</td>
+            </tr>
+            <tr>
+                <td>beforeClose</td>
+                <td>Function</td>
+                <td>function(popup){
+                    }</td>
+                <td>浮层关闭前的事件回调，可用作事件清理</td>
+            </tr>
+            <tr>
+                <td>contentSuccess</td>
+                <td>Function</td>
+                <td>function(popup){
+                    }</td>
+                <td>浮层创建后的事件回调，可以动态填入数据或内容</td>
+            </tr>
+            </tbody>
+        </table>
+
+        <h2>公共方法</h2>
+
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th class="name">方法名称</th>
+                <th class="param">入参说明</th>
+                <th class="return">返回值</th>
+                <th class="function">作用说明</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>show</td>
+                <td>/</td>
+                <td>/</td>
+                <td>显示popup</td>
+            </tr>
+            <tr>
+                <td>hide</td>
+                <td>/</td>
+                <td>/</td>
+                <td>隐藏popup</td>
+            </tr>
+            <tr>
+                <td>position</td>
+                <td>{x:Number,y:Number}</td>
+                <td>/</td>
+                <td>手动设置popup的位置</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script src="http://loftyjs.com/fdevlib/static/js/lofty/item.min.js"></script>
+<script>
+    prettyPrint();
+</script>
+</body>
+</html>

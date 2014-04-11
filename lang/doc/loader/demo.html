@@ -1,0 +1,41 @@
+﻿
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <title>Lofty Hello World</title>
+        <script src="http://style.c.aliimg.com/fdevlib/js/lofty/port/lofty.js"></script>
+
+ 		<!-- PC 页面上引入 jQuery 基础库 -->
+ 		<!--<script src="http://style.c.aliimg.com/fdevlib/js/gallery/jquery/jquery-latest.js"></script>-->
+			
+		<!-- 移动页面上使用 appframework 基础库 替代 jQuery -->
+		<script src="http://style.c.aliimg.com/m/lofty/gallery/appframework/af.js"></script>
+		<script>
+			lofty.config({
+				resolve: function( id ) {
+					var rStyle = /\.css(?:\?|$)/,
+						rFdevlib = /^(lofty|gallery)(\/\w+)+/;
+
+					var type = rStyle.test( id ) ? 'css/' : 'js/';
+
+					if ( rFdevlib.test( id ) ){
+						id = 'fdevlib/' + type + id;
+					}
+					return id;
+				}
+			});
+		</script>
+    </head>
+    <body>
+		<p>
+			请打开 firebug 看http请求 及 console
+		</p>
+        <script>
+        define(['lofty/lang/doc/loader/my-module'], function( myModule ){
+			myModule.say( 'hello world!!!!!!!!!!!!!!' );
+		} );
+        </script>
+
+    </body>
+</html>

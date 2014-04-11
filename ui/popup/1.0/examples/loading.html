@@ -1,0 +1,81 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+	<title>lofty 前端基础框架</title>
+	
+	<!-- Demo页面自身所需的基本样式，全局Reset文件在demo-mobile.min.css中引入 -->
+	<link href="http://loftyjs.com/fdevlib/static/css/lofty/demo-mobile.min.css" rel="stylesheet" />
+    <!-- 实际使用时将 $SkinType 替换为 "back" 或 "front" -->
+    <script type="text/javascript">
+        var cssUrls = ["http://style.c.aliimg.com/m/lofty/ui/button/1.0/button.css", "http://style.c.aliimg.com/m/lofty/ui/loading/1.0/loading.css"];
+    </script>
+    <script src="http://style.c.aliimg.com/m/lofty/port/lofty.js"></script>
+    <script src="http://style.c.aliimg.com/m/lofty/gallery/appframework/af.js"></script>
+</head>
+<body style="height:500px">
+<button class="show-dialog">show-popup</button>
+<div class="fui-dialog-body fd-hide">
+    <div class="fui-loading myloading">
+      <div class="fui-loading-bg"></div>
+      <div class="fui-loading-logo"></div>
+    </div>
+    <p>加载中...</p>
+</div>
+
+<div class="demo-content">
+<div class="demo-widget">
+ <div class="demo-widget-dom">	
+
+<style>
+    .show-dialog{
+        height: 32px;
+        padding: 2px 5px;
+    }
+    .fui-dialog-body{
+        width: 128px;
+        background-color: #f4f4f4;
+        border-radius: 5px;
+        padding: 20px 0;
+    }
+    .fui-dialog-body .myloading {
+        margin: 0 auto;
+    }
+    .fui-dialog-body p {
+        margin-top: 10px;
+        text-align: center;
+        color: grey;
+    }
+</style>
+
+<script>
+
+    define(['fui/popup/1.0','jquery'], function(Popup,$){
+        var onEvent = $.os.supportsTouch ? 'tap' : 'click';
+        var popup = new Popup({
+            tpl:".fui-dialog-body",
+            isModal:true,
+            beforeOpen:function(popup){
+                return true;
+            },
+            beforeClose:function(popup){
+            },
+            contentSuccess:function(popup){
+            }
+        });
+        //dialog显示
+        popup.show();
+        $(".show-dialog").on(onEvent,function(){
+            popup.show();
+        });
+    });
+
+</script>
+  </div>
+ </div>
+</div>
+<!-- Demo页面自身所需的JS，实际项目中无需引入 -->
+<script src="http://loftyjs.com/fdevlib/static/js/lofty/demo.min.js" type="text/javascript"></script>	
+</body>
+</html>

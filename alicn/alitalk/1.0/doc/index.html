@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="gbk"/>
+		<title>lofty 前端基础框架</title>
+        <link rel="shortcut icon" href="favicon.ico" />
+		<link href="http://wd.alibaba-inc.com/ui/static/css/item.min.css" rel="stylesheet" />
+    </head>
+    <body>
+		<div class="doc" id="doc">
+			<div class="main">
+				<div class="style-menu" id="dpl_style_menu">
+					
+				</div>
+					
+				<h1>Alitalk : 阿里旺旺
+					<div class="authorInfo">
+						<a href="http://amos.im.alisoft.com/msg.aw?v=2&amp;uid=wtxidian&amp;site=cntaobao&amp;s=1" target="_blank">
+							<img width="17" border="0" align="absMiddle" height="16" src="http://img.china.alibaba.com/cms/upload/search/fdevlib/alitalk.png">
+							<span class="author">王涛</span>
+						</a>
+					</div>
+				</h1>
+				
+				<div class="row-fluid">
+					<div class="span19 demo-container">
+					  <iframe id="dpl_demo" class="demo-frame" width="100%" height="100%" frameborder="0"></iframe>
+					</div>
+					<div class="span4 nav-list">
+					  <h2 class="nav-title">示例</h2>
+					  <div id="dpl_menubar">
+					  
+					    <!--demo页面的路径统一放在这个json变量里面定义-->
+						<script type="text/javascript">
+							var noDPL = true;
+							var demoArray = [
+								{'txt':'普通旺旺', 'href':'../examples/alitalk.html'},
+								{'txt':'旺旺分流组件', 'href':'../examples/alitalk-shunt.html'}
+							];
+						</script>
+					  </div>
+					</div>
+				</div>
+				
+				<h2>介绍</h2>
+				<p>阿里旺旺组件</p>
+				
+				<h2>使用方法</h2>
+				
+<pre class="prettyprint linenums"> 
+define(['alicn/alitalk/1.0'],function( Alitalk ){
+  Alitalk.init({
+    trigger:$('a[data-alitalk]', '#demo1')
+  });
+})
+</pre>			
+			<h2>配置参数</h2>
+				
+			  <table class="table table-striped">
+				<thead>
+					  <tr>
+					  <th class="name">配置参数</th>
+					  <th class="param">参数类型/可选值</th>
+					  <th class="return">参数默认值</th>
+					  <th class="function">作用说明</th>
+					  </tr>
+				  </thead>
+				  <tbody>
+					  <tr>
+						  <td>cls </td>
+						  <td>Json Object</td>
+						  <td>{ base: 'alitalk', on: 'alitalk-on', off: 'alitalk-off', mb: 'alitalk-mb'}</td>
+						  <td>不同状态下旺旺图标的class name</td>
+					  </tr>
+					  <tr>
+						  <td>attr </td>
+						  <td>String</td>
+						  <td>'alitalk'</td>
+						  <td>组件信息所在的标签（默认会先判断data-前缀）</td>
+					  </tr>
+					  <tr>
+						  <td>siteID </td>
+						  <td>String</td>
+						  <td>'cnalichn'</td>
+						  <td>旺旺所在的站点</td>
+					  </tr>			  
+					  <tr>
+						  <td>remote</td>
+						  <td>Boolean</td>
+						  <td>true</td>
+						  <td>是否通过接口获取用户在线状态 </td>
+					  </tr>
+					  <tr>
+						  <td>onRemote</td>
+						  <td>Function</td>
+						  <td>Function</td>
+						  <td>每个DOM在获取到用户状态信息之后，调用此方法。可以重写此方法来适应不同的应用需求</td>
+					  </tr>
+					  <tr>
+						  <td>onSuccess </td>
+						  <td>Function</td>
+						  <td>NULL</td>
+						  <td>所有DOM获取到用户状态信息之后，调用此方法。该方法与onRemote的区别是，onRemote会执行多次</td>
+					  </tr>
+					  <tr>
+						  <td>prop</td>
+						  <td>Function</td>
+						  <td>Function</td>
+						  <td>传递给桌面客户端的额外信息</td>
+					  </tr>
+					  <tr>
+						  <td>getAlitalk</td>
+						  <td>Function</td>
+						  <td>Function</td>
+						  <td>未安装或未检测到安装旺旺后调用此方法 </td>
+					  </tr>			  
+                 </tbody>
+			  </table>
+			  
+				<h2>公共方法</h2>
+				
+				<table class="table table-striped">
+				<thead>
+					  <tr>
+					  <th class="name">方法名称</th>
+					  <th class="param">入参说明</th>
+					  <th class="return">返回值</th>
+					  <th class="function">作用说明</th>
+					  </tr>
+				  </thead>
+				  <tbody>
+					  <tr>
+						  <td>init (options:Object) </td>
+						  <td>组件的配置参数</td>
+						  <td>/</td>
+						  <td>Alitalk初始化函数</td>
+					  </tr>
+					  <tr>
+						  <td>login (id:String)</td>
+						  <td>用户的loginId</td>
+						  <td>/</td>
+						  <td>调用插件的登录功能，触发桌面客户端的登录窗口</td>
+					  </tr>
+					  <tr>
+						  <td>getVersion ()</td>
+						  <td>/</td>
+						  <td>Number</td>
+						  <td>返回当前旺旺的 version 版本</td>
+					  </tr>
+					  <tr>
+						  <td>installed ()</td>
+						  <td>/</td>
+						  <td>true | false</td>
+						  <td>判断旺旺插件是否安装</td>
+					  </tr>
+					  
+                 </tbody>
+			  </table>
+				
+			</div>
+		</div>
+		<script src="http://wd.alibaba-inc.com/ui/static/js/item.min.js"></script>
+		<script>
+			prettyPrint();
+		</script>
+</body>
+</html>

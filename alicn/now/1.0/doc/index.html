@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+		<title>Fdev5 util-now</title>
+        <meta name="viewport" content="initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+        <link rel="shortcut icon" href="favicon.ico" />
+		<link href="http://loftyjs.com/fdevlib/static/css/lofty/item.min.css" rel="stylesheet" />
+    </head>
+	
+		
+    <body>
+		<div class="doc" id="doc">
+			<div class="main">
+					
+				<h1>Now : 方便获得服务器当前时间
+					<div class="authorInfo">
+            <a href="http://amos.im.alisoft.com/msg.aw?v=2&amp;uid=swaydsw&amp;&amp;s=1" target="_blank">
+							<img width="17" border="0" align="absMiddle" height="16" src="http://img.china.alibaba.com/cms/upload/search/fdevlib/alitalk.png">
+							<span class="author">邓仕韦</span>
+						</a>
+				    </div>
+				</h1>
+				
+				<div class="row-fluid">
+					<div class="span19 demo-container">
+					  <iframe id="dpl_demo" class="demo-frame" width="100%" height="100%" frameborder="0"></iframe>
+					</div>
+					<div class="span4 nav-list">
+					  <h2 class="nav-title">示例</h2>
+					  <div id="dpl_menubar">
+						<script type="text/javascript">
+							var demoArray = [
+								{'txt':'获取服务器时间', 'href':'../examples/demo.html'}
+							];
+						</script>
+					  </div>
+					</div>
+				</div>
+				
+				<h2>介绍</h2>
+				<p>该模块用于取服务器当前时间，旨在统一维护管理类似的逻辑。</p>
+				
+<h2>使用方法：</h2>
+				
+<pre class="prettyprint linenums"> 
+define(['jquery', 'alicn/now/1.0'], function ( $, Now ) {
+
+  var result = $('#result');
+
+  function handler (serverTimeMillis) {
+    // 取时间不成功
+    if (!serverTimeMillis) {
+      result.append('取服务器时间失败，请重试！');
+      return;
+    }
+
+    var offset = serverTimeMillis - (new Date()).getTime();
+
+    result.append('您电脑的时间比服务器时间' + (offset > 0 ? '慢' : '快') + '了' + offset + '毫秒。');
+  }
+
+  Now.now(handler);
+});
+</pre>
+			<h2>公共方法</h2>
+				
+				<table class="table table-striped">
+				<thead>
+					  <tr>
+					  <th class="name">方法名称</th>
+					  <th class="param">入参说明</th>
+					  <th class="return">返回值</th>
+					  <th class="function">作用说明</th>
+					  </tr>
+				  </thead>
+				  <tbody>
+					  <tr>
+						  <td>now(callback)  </td>
+						  <td>callback Function</td>
+						  <td>/</td>
+						  <td>当获取服务器时间后回调传入的方法:<br/>
+						  	1、若成功获取时间，则回调函数的参数值是服务器当前时间的毫秒表示形式；<br/>
+						  	2、若获取失败，则回调函数的参数值为 null ；
+						  </td>
+					  </tr>
+					  <tr>
+						  <td>getAPI()  </td>
+						  <td>/</td>
+						  <td>/</td>
+						  <td>返回获取服务器时间的真实地址，以备特殊情况个性化使用。</td>
+					  </tr>
+                 </tbody>
+			  </table>		
+				
+			</div>
+		</div>
+		<script src="http://loftyjs.com/fdevlib/static/js/lofty/item.min.js"></script>
+		<script>
+			prettyPrint();
+		</script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+	<title>lofty 前端基础框架</title>
+	
+	<!-- Demo页面自身所需的基本样式，全局Reset文件在demo-mobile.min.css中引入 -->
+	<link href="http://loftyjs.com/fdevlib/static/css/lofty/demo-mobile.min.css" rel="stylesheet" />
+  <script src="http://style.c.aliimg.com/m/lofty/port/lofty.js"></script>
+  <script src="http://style.c.aliimg.com/m/lofty/gallery/appframework/af.js"></script>
+  <!-- 模拟Wing提供的api，仅为在PC上demo所需要，在实际开发中不需要引入 -->
+  <script src="http://style.c.aliimg.com/m/lofty/ui/resourceslot/1.0/mock/mock.js"></script>
+</head>
+<body>
+  <div class="wrapper"></div>
+  <style type="text/css">
+    body {
+      margin-top: 20px;
+      height: 280px;
+    }
+    .wrapper {
+      width: 360px;
+    }
+  </style>
+  <script>
+
+	define(['lofty/ui/resourceslot/1.0/resourceslot'], function(resSlot){
+		resSlot.create({
+        container: '.wrapper',
+        scene: {
+          place: '2',
+          keyword: 'whatever'
+        }
+    });
+	})
+  </script>
+</body>
+</html>

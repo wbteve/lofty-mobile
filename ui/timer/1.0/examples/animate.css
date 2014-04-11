@@ -1,0 +1,57 @@
+/**
+ * 倒计时组件动画demo
+ * @author daniel.xud
+ * @date 2013-09-11
+ * @modify by shanshan.hongss on 2014.01.17 for mobile
+ */
+
+.ui-timer-animate div{
+    float: left;
+}
+
+.ui-timer-animate dl {
+    float: left;
+    width: 30px;
+    height: 40px;
+    overflow: hidden;
+}
+
+.ui-timer-animate dd {
+    background: url(http://img.china.alibaba.com/news/upload/0/num_1267286647898.gif) no-repeat 0 0;
+    width: 30px;
+    height: 400px;
+}
+
+.ui-timer-animate .num0 {
+    background-position: 0 0;
+}
+.ui-timer-animate .num1 {
+    background-position: 0 -40px;
+}
+.ui-timer-animate .num2 {
+    background-position: 0 -80px;
+}
+.ui-timer-animate .num3 {
+    background-position: 0 -120px;
+}
+.ui-timer-animate .num4 {
+    background-position: 0 -160px;
+}
+.ui-timer-animate .num5 {
+    background-position: 0 -200px;
+}
+.ui-timer-animate .num6 {
+    background-position: 0 -240px;
+}
+.ui-timer-animate .num7 {
+    background-position: 0 -280px;
+}
+.ui-timer-animate .num8 {
+    background-position: 0 -320px;
+}
+.ui-timer-animate .num9 {
+    background-position: 0 -360px;
+}
+
+
+

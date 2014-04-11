@@ -1,0 +1,205 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+		<meta charset="utf-8"/>
+		<meta name="viewport" content="initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+
+		<title>lofty 前端基础框架</title>
+        <link rel="shortcut icon" href="favicon.ico" />
+		<link href="http://loftyjs.com/fdevlib/static/css/lofty/item.min.css" rel="stylesheet" />
+    </head>
+    <body>
+		<div class="doc" id="doc">
+			<div class="main">
+				<div class="style-menu" id="dpl_style_menu">
+					
+				</div>
+					
+				<h1>template : 模板渲染引擎
+				</h1>
+				
+				<div class="row-fluid">
+					<div class="span19 demo-container">
+					  <iframe id="dpl_demo" class="demo-frame" width="100%" height="100%" frameborder="0"></iframe>
+					</div>
+					<div class="span4 nav-list">
+					  <h2 class="nav-title">示例</h2>
+					  <div id="dpl_menubar">
+					  
+					    <!--demo页面的路径统一放在这个json变量里面定义-->
+						<script type="text/javascript">
+							var noDPL = true;
+							var demoArray = [
+								{'txt':'基本示例', 'href':'../examples/basic.html'},
+								{'txt':'嵌入子模板', 'href':'../examples/include.html'},
+								{'txt':'不转义HTM', 'href':'../examples/no-escape.html'},
+								{'txt':'在js中存放模板', 'href':'../examples/jstemplate.html'},
+								{'txt':'添加辅助方法', 'href':'../examples/helper.html'},
+								{'txt':'设置界定符', 'href':'../examples/tag.html'}
+							];
+						</script>
+					  </div>
+					</div>
+				</div>
+				
+				<h2>介绍</h2>
+				<p>template 模板渲染引擎基于开源项目<a target="_blank" href="https://github.com/aui/artTemplate">artTemplate</a>改造而来：</p>
+				
+				<p>artTemplate 是新一代 javascript 模板引擎，它在 v8 中的渲染效率可接近 javascript 性能极限，在 chrome 下渲染效率测试中分别是知名引擎 Mustache 与 micro tmpl 的 25 、 32 倍。</p>
+				
+				<p>引擎支持调试。若渲染中遇到错误，调试器可精确定位到产生异常的模板语句，解决前端模板难以调试的问题。</p>
+				<p>这一切都在 2kb(gzip) 中实现！</p>
+				
+				<h2>快速上手</h2>
+				<p><b>编写模板</b></p>
+				<p>使用一个<code>type="text/html"</code>的<code>script</code>标签存放模板：</p>
+
+<pre class="prettyprint linenums" style="margin-left:20px;"> 
+  &lt;script id="test" type="text/html"&gt;
+	&lt;h1&gt;&lt;%=title%&gt;&lt;/h1&gt;
+	&lt;ul&gt;
+	  &lt;%for(i = 0; i &lt; list.length; i ++) {%&gt;
+		&lt;li&gt;条目内容 &lt;%=i + 1%&gt; ：&lt;%=list[i]%&gt;&lt;/li&gt;
+	  &lt;%}%&gt;
+	&lt;/ul&gt;
+  &lt;/script&gt;
+
+</pre>			
+<p>模板逻辑语法开始与结束的界定符号为<code>&lt;%</code> 与<code>%&gt;</code>，若<code>&lt;%</code>后面紧跟<code>=</code>号则输出变量内容。</p>
+
+	<br/>
+	<p><b>渲染模板</b></p>
+	<p><code>template.render(id, data)</code></p>
+<pre class="prettyprint linenums" style="margin-left:20px;"> 
+  var data = {
+	title: '标签',
+	list: ['文艺', '博客', '摄影', '电影', '民谣', '旅行', '吉他']
+  };
+  var html = template.render('test', data);
+  document.getElementById('content').innerHTML = html;
+  
+</pre>	
+		
+	<p><a href="../examples/basic.html" target="_blank">演示</a></p>
+
+	<br/>
+	<p><b>嵌入子模板</b></p>
+
+	<p><code>&lt;%include(id, [data])%&gt;</code>语句可以嵌入子模板，其中第二个参数是可选的，它默认传入当前的数据。</p>
+
+	<pre class="prettyprint linenums" style="margin-left:20px;"> &lt;script id="test" type="text/html"&gt;
+	&lt;h1&gt;&lt;%=title%&gt;&lt;/h1&gt;
+	&lt;%include('list')%&gt;
+	&lt;/script&gt;
+
+	&lt;script id="list" type="text/html"&gt;
+	&lt;ul&gt;
+		&lt;%for(i = 0; i &lt; list.length; i ++) {%&gt;
+			&lt;li&gt;条目内容 &lt;%=i + 1%&gt; ：&lt;%=list[i]%&gt;&lt;/li&gt;
+		&lt;%}%&gt;
+	&lt;/ul&gt;
+	&lt;/script&gt;
+	</pre>
+
+	<p><a href="../examples/include.html" target="_blank">演示</a></p>
+
+	<br/>
+	<p><b>不转义HTML</b></p>
+
+	<p>模板引擎默认数据包含的 HTML 字符进行转义以避免 XSS 漏洞，若不需要转义的地方可使用两个<code>=</code>号。</p>
+
+<pre class="prettyprint linenums" style="margin-left:20px;">
+  &lt;script id="test" type="text/html"&gt;
+    &lt;%==value%&gt;
+  &lt;/script&gt;
+</pre>
+
+	<p>若需要关闭默认转义，可以设置<code>template.isEscape = false</code>。</p>
+
+	<p><a href="../examples/no-escape.html" target="_blank">演示</a></p>
+	
+	<br/>
+	<p><b>在js中存放模板</b></p>
+
+	<pre class="prettyprint linenums" style="margin-left:20px;">var source =
+	  '&lt;ul&gt;'
+	+    '&lt;% for (var i = 0; i &lt; list.length; i ++) { %&gt;'
+	+        '&lt;li&gt;索引 &lt;%= i + 1 %&gt; ：&lt;%= list[i] %&gt;&lt;/li&gt;'
+	+    '&lt;% } %&gt;'
+	+ '&lt;/ul&gt;';
+
+	var data = {
+		list: ['文艺', '博客', '摄影', '电影', '民谣', '旅行', '吉他']
+	};
+
+	var render = template.compile(source);
+	var html = render(data);
+	document.getElementById('content').innerHTML = html;
+	</pre>
+
+	<p><a href="../examples/jstemplate.html" target="_blank">演示</a></p>
+
+	<br/>
+	<p><b>添加辅助方法</b></p>
+
+	<p><code>template.helper(name, callback)</code>辅助方法一般用来进行字符串替换，如 XSS 过滤、UBB 替换、脏话替换等。</p>
+
+	<p>例如扩展一个UBB替换方法：</p>
+
+<pre class="prettyprint linenums" style="margin-left:20px;">
+  template.helper('$ubb2html', function (content) {
+	return content
+	.replace(/\[b\]([^\[]*?)\[\/b\]/igm, '&lt;b&gt;$1&lt;/b&gt;')
+	.replace(/\[i\]([^\[]*?)\[\/i\]/igm, '&lt;i&gt;$1&lt;/i&gt;')
+	.replace(/\[u\]([^\[]*?)\[\/u\]/igm, '&lt;u&gt;$1&lt;/u&gt;')
+	.replace(/\[url=([^\]]*)\]([^\[]*?)\[\/url\]/igm, '&lt;a href="$1"&gt;$2&lt;/a&gt;')
+	.replace(/\[img\]([^\[]*?)\[\/img\]/igm, '&lt;img src="$1" /&gt;');
+  });
+</pre>
+
+	<p>在模板中的使用方式：</p>
+
+	<pre class="prettyprint linenums" style="margin-left:20px;">&lt;%=$ubb2html(content) %&gt;</pre>
+
+	<p>注意：引擎不会对辅助方法输出的 HTML 字符进行转义。</p>
+
+	<p><a href="../examples/helper.html" target="_blank">演示</a></p>
+
+	<br/>
+	<p><b>设置界定符</b></p>
+
+	<p>若前端模板语法与后端语法产生冲突，可以修改模板引擎界定符，例如：</p>
+
+	<pre class="prettyprint linenums" style="margin-left:20px;">
+  template.openTag = "&lt;!--[";
+  template.closeTag = "]--&gt;";</pre>
+
+	<p><a href="../examples/tag.html" target="_blank">演示</a></p>
+
+	<br/>
+	<p><b>自定义语法</b></p>
+
+	<p>artTemplate 提供一个语法扩展用来简化模板逻辑语法。语法示例：</p>
+
+<pre class="prettyprint linenums" style="margin-left:20px;">
+{if admin}
+  &lt;h3&gt;{title}&lt;/h3&gt;
+  &lt;ul&gt;
+	{each list}
+		&lt;li&gt;{$index + 1}: {$value}&lt;/li&gt;
+	{/each}
+  &lt;/ul&gt;
+{/if}
+</pre>
+
+	<p><a href="http://aui.github.com/artTemplate/extensions/index.html" target="_blank">详情</a></p>
+
+		
+	</div>
+		</div>
+		<script src="http://loftyjs.com/fdevlib/static/js/lofty/item.min.js"></script>
+		<script>
+			prettyPrint();
+		</script>
+</body>
+</html>

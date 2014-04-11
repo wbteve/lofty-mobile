@@ -1,0 +1,65 @@
+/**
+* @file loading.less
+* @brief
+* @author lihao.ylh 2014-04-25 created
+* @updated 
+*/
+
+@import "../../base/1.0/global.less";
+
+@-webkit-keyframes infinite-rotate {
+  from {-webkit-transform:rotate(0deg);}
+  to {-webkit-transform:rotate(360deg);}
+}
+
+.fui-loading {
+	position: relative;
+	width: 44px;
+	height: 44px;
+	.fui-loading-bg {
+		width: 44px;
+		height: 44px;
+		background: url("@{fuiImgPath}/loading_bg.png") no-repeat 0 0;
+		background-size: cover;
+		-webkit-animation-name: infinite-rotate;
+		-webkit-animation-duration: 1.5s;
+		-webkit-animation-iteration-count: infinite;
+		-webkit-animation-timing-function: linear;
+	}
+	.fui-loading-logo {
+		position: absolute;
+		top: 13px;
+		left: 7px;
+		width: 30px;
+		height: 18px;
+		overflow: hidden;
+		background: url("@{fuiImgPath}/loading_logo.png") no-repeat 0 0;
+		background-size: cover;
+	}
+}
+
+.fui-loading-l {
+	position: relative;
+	width: 89px;
+	height: 89px;
+	.fui-loading-bg {
+		width: 89px;
+		height: 89px;
+		background: url("@{fuiImgPath}/loading_bg_l.png") no-repeat 0 0;
+		background-size: cover;
+		-webkit-animation-name: infinite-rotate;
+		-webkit-animation-duration: 1.5s;
+		-webkit-animation-iteration-count: infinite;
+		-webkit-animation-timing-function: linear;
+	}
+	.fui-loading-logo {
+		position: absolute;
+		top: 29px;
+		left: 13px;
+		width: 64px;
+		height: 32px;
+		overflow: hidden;
+		background: url("@{fuiImgPath}/loading_logo_l.png") no-repeat 0 0;
+		background-size: cover;
+	}
+}

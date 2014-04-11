@@ -1,0 +1,75 @@
+/**
+* @brief
+* @author chuanpeng.qchp
+* @updated 
+*/
+
+@import "../../base/1.0/global.less";
+
+@numberHeight:30px;
+@numberWidth:57px;
+@numberBgColor:#fff;
+@numberPadding:0 3px;
+@optionBgColor:#fafafa;
+@optionActiveBgColor:#eaeaea;
+@borderColor:#d9d9d9;
+@optionTxtColor:#999;
+@borderRadius:4px;
+
+.fui-number{
+	height:@numberHeight;
+	width:@numberWidth + 2*@numberHeight - 2;
+	border-radius:@borderRadius;
+	&-down,&-up{
+		border:1px solid @borderColor;
+		display:block;
+		float:left;
+		width:@numberHeight - 1;
+		height:@numberHeight;
+		line-height:@numberHeight - 2;
+		font-size:(@numberHeight - 2);
+		text-align:center;
+		color:@optionTxtColor;
+		font-weight:700;
+		background-color:@optionBgColor;
+	}
+	&-down {
+		background: url("@{fuiImgPath}/icon_reduce.png") 50% 50% no-repeat;
+		background-size: 50%;
+	}
+	&-up {
+		background: url("@{fuiImgPath}/icon_add.png") 50% 50% no-repeat;
+		background-size: 50%;	
+	}
+	a:hover{
+		background-color:@optionBgColor;
+		color:@optionTxtColor;
+	}
+	a:active{
+		background-color:@optionActiveBgColor;
+		color:@optionTxtColor;
+	}
+	&-down{
+		border-radius:@borderRadius 0 0 @borderRadius;
+		border-right:none;
+	}
+	&-up{
+		border-radius:0 @borderRadius @borderRadius 0;
+		border-left:none;
+	}
+	&-text{
+		float:left;
+		height:@numberHeight;
+		width:@numberWidth;
+		text-align:center;
+		border:1px solid @borderColor;
+		font-size:@numberHeight / 2;
+		background-color:@numberBgColor;
+		padding:@numberPadding;
+		color:#4d4d4d;
+		border-radius: 0;
+		&-err {
+			border: 2px solid #ff5000;
+		}
+	}
+}

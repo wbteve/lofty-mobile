@@ -1,0 +1,126 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+	<title>lofty 前端基础框架</title>
+	
+	<!-- Demo页面自身所需的基本样式，全局Reset文件在demo-mobile.min.css中引入 -->
+	<link href="http://loftyjs.com/fdevlib/static/css/lofty/demo-mobile.min.css" rel="stylesheet" />
+
+    <!-- 实际使用时将 $SkinType 替换为 "back" 或 "front" -->
+    <script type="text/javascript">
+        var cssUrls = "http://style.c.aliimg.com/m/lofty/ui/button/1.0/button.css";
+    </script>
+    <script src="http://style.c.aliimg.com/m/lofty/port/lofty.js"></script>
+    <script src="http://style.c.aliimg.com/m/lofty/gallery/appframework/af.js"></script>
+</head>
+<body style="height:500px">
+<button class="show-dialog">show-popup</button>
+<div class="fui-dialog-body fd-hide">
+    <header>
+        <span class="dialog-close"></span>
+        <span class="dialog-title">提示</span>
+    </header>
+    <section>
+        <p>
+            删除所选货品？
+        </p>
+    </section>
+    <footer>
+        <button id="delete" class="fui-btn-important">确认删除</button>
+    </footer>
+</div>
+
+<div class="demo-content">
+<div class="demo-widget">
+ <div class="demo-widget-dom">	
+<style>
+    .show-dialog{
+        height: 32px;
+        padding: 2px 5px;
+    }
+    .fui-dialog-body {
+        width: 320px;
+        background-color: #f5f5f5;
+        border-radius: 5px;
+        color: #4c4c4c;
+    }
+    .fui-dialog-body header {
+        height: 50px;
+        line-height: 50px;
+        border-bottom: 1px solid #eee;
+        padding-left: 16px;
+        padding-right: 10px;
+    }
+    .fui-dialog-body .dialog-title {
+        font-size: 18px;
+        font-weight: bold;
+    }
+    .fui-dialog-body .dialog-close {
+        display: inline-block;
+        width: 24px;
+        height: 24px;
+        line-height: 24px;
+        float: right;
+        background: url(http://style.c.aliimg.com/m/lofty/assets/images/icon_public_close.png) no-repeat;
+        background-size: cover;
+        margin-top: 12px;
+    }
+    .fui-dialog-body section {
+        padding: 13px 16px 16px 32px;
+    }
+    .fui-dialog-body section p {
+        font-size: 16px;
+        line-height: 32px;
+    }
+    .fui-dialog-body footer {
+        padding-bottom: 22px;
+        text-align: center;
+    }
+</style>
+<script>
+
+    define(['fui/popup/1.0','jquery'], function(Popup,$){
+        var onEvent = $.os.supportsTouch ? 'tap' : 'click';
+        var popup = new Popup({
+            tpl:".fui-dialog-body",
+            isModal:true,
+            beforeOpen:function(popup){
+                return true;
+            },
+            beforeClose:function(popup){
+            },
+            buttons:[
+                {
+                    'event':onEvent,
+                    'selector':'#delete',
+                    'callback':function(popup,paramObj){
+                        this.hide();
+                    }
+                },
+                {
+                    'event':onEvent,
+                    'selector':'.dialog-close',
+                    'callback':function(popup,paramObj){
+                        this.hide();
+                    }
+                }
+            ]
+        });
+        //dialog显示
+        popup.show();
+        $(".show-dialog").on(onEvent,function(){
+            popup.show();
+        });
+    });
+
+</script>
+
+  </div>
+ </div>
+</div>
+<!-- Demo页面自身所需的JS，实际项目中无需引入 -->
+<script src="http://loftyjs.com/fdevlib/static/js/lofty/demo.min.js" type="text/javascript"></script>   
+</body>
+</html>

@@ -1,0 +1,152 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+	<title>lofty 前端基础框架</title>
+	
+	<!-- Demo页面自身所需的基本样式，全局Reset文件在demo-mobile.min.css中引入 -->
+	<link href="http://loftyjs.com/fdevlib/static/css/lofty/demo-mobile.min.css" rel="stylesheet" />
+    <!-- 实际使用时将 $SkinType 替换为 "back" 或 "front" -->
+    <script type="text/javascript">
+        var cssUrls = "http://style.c.aliimg.com/m/lofty/ui/tab/1.0/tab.css";
+    </script>
+    <script src="http://style.c.aliimg.com/m/lofty/port/lofty.js"></script>
+    <script src="http://style.c.aliimg.com/m/lofty/gallery/appframework/af.js"></script>
+</head>
+<body>
+
+
+<div class="demo-content">
+<div class="demo-widget">
+ <div class="demo-widget-dom">	
+    <style type="text/css">
+        .tab-wrapper {
+            width: 360px;
+        }
+    </style>
+    <script type="text/javascript">
+        var onEvent = af.os.supportsTouch ? 'tap' : 'click';
+        af('body').on(onEvent, '#fui-tab1 div', function() {
+            af('#fui-tab1 div').removeClass('active');
+            af(this).addClass('active');
+        });
+    </script>
+    <div class="tab-wrapper">
+        <div id="fui-tab1" class="fui-tab-top">
+            <div class="active">产品属性</div>
+            <div>评价<em>(35985)</em></div>
+            <div>同店推荐</div>
+        </div>
+    </div>
+  </div>
+ </div>
+
+<div class="demo-widget">
+ <div class="demo-widget-dom">  
+    <style type="text/css">
+        .tab-wrapper {
+            width: 360px;
+        }
+    </style>
+    <script type="text/javascript">
+        var onEvent = af.os.supportsTouch ? 'tap' : 'click';
+        af('body').on(onEvent, '#fui-tab2 div', function() {
+            af('#fui-tab2 div').removeClass('active');
+            af(this).addClass('active');
+        });
+    </script>
+    <div class="tab-wrapper">
+        <div id="fui-tab2" class="fui-tab-top">
+            <div class="active">产品属性</div>
+            <div>评价<em>(355)</em></div>
+            <div>同店推荐</div>
+            <div>其他</div>
+        </div>
+    </div>
+  </div>
+ </div>
+
+<div class="demo-widget">
+ <div class="demo-widget-dom">  
+    <style type="text/css">
+        .tab-wrapper {
+            width: 360px;
+        }
+    </style>
+    <script type="text/javascript">
+        var onEvent = af.os.supportsTouch ? 'tap' : 'click';
+        af('body').on(onEvent, '#fui-tab3 div', function() {
+            af('#fui-tab3 div').removeClass('active');
+            af(this).addClass('active');
+        });
+    </script>
+    <div class="tab-wrapper">
+        <div id="fui-tab3" class="fui-tab-top">
+            <div class="active">产品属性</div>
+            <div>评价</div>
+            <div>同店推荐</div>
+            <div>其他</div>
+            <div>其他2</div>
+        </div>
+    </div>
+  </div>
+ </div>
+
+<div class="demo-widget">
+ <div class="demo-widget-dom">  
+    <style type="text/css">
+        .tab-wrapper {
+            width: 360px;
+        }
+    </style>
+    <script type="text/javascript">
+        var onEvent = af.os.supportsTouch ? 'tap' : 'click';
+        af('body').on(onEvent, '#fui-tab4 div', function() {
+            af('#fui-tab4 div').removeClass('active');
+            af(this).addClass('active');
+        });
+    </script>
+    <div class="tab-wrapper">
+        <div id="fui-tab4" class="fui-tab-normal">
+            <div class="active">全部</div>
+            <div>四五星(100)</div>
+            <div>三星(100)</div>
+            <div>一二星(100)</div>
+        </div>
+    </div>
+  </div>
+ </div>
+
+
+<div class="demo-widget">
+ <div class="demo-widget-dom">  
+    <style type="text/css">
+        .tab-wrapper {
+            width: 360px;
+        }
+    </style>
+    <script type="text/javascript">
+        var onEvent = af.os.supportsTouch ? 'tap' : 'click';
+        af('body').on(onEvent, '#fui-tab5 div', function() {
+            af('#fui-tab5 div').removeClass('active');
+            af(this).addClass('active');
+        });
+    </script>
+    <div class="tab-wrapper">
+        <div id="fui-tab5" class="fui-tab-normal">
+            <div class="active">全部</div>
+            <div>四五星(100)</div>
+            <div>三星(100)</div>
+            <div>一二星(100)</div>
+            <div>其他</div>
+        </div>
+    </div>
+  </div>
+ </div>
+
+</div>
+<!-- Demo页面自身所需的JS，实际项目中无需引入 -->
+<script src="http://loftyjs.com/fdevlib/static/js/lofty/demo.min.js" type="text/javascript"></script>	
+</body>
+</html>

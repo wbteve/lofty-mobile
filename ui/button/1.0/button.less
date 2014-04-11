@@ -1,0 +1,179 @@
+/**
+* @file button.less
+* @brief
+* @author terence.wangt 2014-01-14 created
+* @updated 
+*/
+
+@import "../../base/1.0/global.less";
+
+.linear-graident(@colorStart, @colorEnd){
+    background-color: (@colorEnd + @colorStart) / 2;
+    background-image: -moz-linear-gradient(top, @colorStart, @colorEnd);
+    background-image: -ms-linear-gradient(top, @colorStart, @colorEnd);
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(@colorStart), to(@colorEnd));
+    background-image: -webkit-linear-gradient(top, @colorStart, @colorEnd);
+    background-image: -o-linear-gradient(top, @colorStart, @colorEnd);
+    background-image: linear-gradient(top, @colorStart, @colorEnd);
+}
+
+@btnFontColor: #666;
+@btnBorderColor: #999;
+@btnBackColor: #fff;
+@btnBackActiveColor: #E6E6E6;
+
+@btnFontHintColor: #ff7300;
+@btnBorderHintColor: #FF8315;
+@btnBackHintColor: #fff;
+@btnBackActiveHintColor: #FFEDDF;
+
+@btnFontCheckColor: #ff7300;
+@btnBorderCheckColor: #FF7300;
+@btnBackCheckColor: #fff;
+
+@btnImportantBorderColor: transparent;
+@btnImportantBorderTopColor: #FFAA3C;
+@btnImportantBorderBottomColor: #E4720D;
+@btnImportantFontColor: #fff;
+@btnImportantGraidentStart: #FF9726;
+@btnImportantGraidentEnd: #FF8315;
+@btnImportantActiveGraidentStart: #FF7300;
+@btnImportantActiveGraidentEnd: #FF7300;
+
+@btnActionBorderColor: #BFBFBF;
+@btnActionFontColor: #666;
+@btnActionGraidentStart: #FAFAFA;
+@btnActionGraidentEnd: #F0F0F0;
+
+@btnDisableFontColor: #B2B2B2;
+@btnBackDisableColor: #E6E6E6;
+
+@btnBorderWidth: 1px;
+@btnFontFamily: Helvetica Neue;
+
+.fui-btn,
+.fui-btn-important,
+.fui-btn-hint,
+.fui-btn-action,
+.fui-btn-checked,
+.fui-btn-disabled,
+.fui-btn-pic{
+	font-size: 14px;
+	display: inline-block;
+   	vertical-align: middle;
+   	overflow: visible;
+   	border-radius: 5px;
+	cursor:pointer;
+	font-family: @btnFontFamily;
+}
+
+.fui-btn{
+	height: 40px;
+	line-height: 40px;
+	padding: 0 23px;
+	border: solid @btnBorderWidth @btnBorderColor;
+	color: @btnFontColor;
+	background-color:@btnBackColor;
+	&:hover{
+		color: @btnFontColor;
+		background-color:@btnBackActiveColor;
+	}
+}
+
+.fui-btn-hint{
+	height: 40px;
+	line-height: 40px;
+	padding: 0 23px;
+	border: solid @btnBorderWidth @btnBorderHintColor;
+	color: @btnFontHintColor;
+	background-color:@btnBackHintColor;
+	&:hover{
+		color: @btnFontHintColor;
+		background-color:@btnBackActiveHintColor;
+	}
+}
+
+.fui-btn-important {
+	height: 40px;
+	line-height: 40px;
+	padding: 0 23px;
+	border: solid @btnBorderWidth @btnImportantBorderColor;
+	border-top-color: @btnImportantBorderTopColor;
+	border-bottom-color: @btnImportantBorderBottomColor;
+	color: @btnImportantFontColor;
+	.linear-graident(@btnImportantGraidentStart, @btnImportantGraidentEnd);
+	&:hover{
+		color: @btnImportantFontColor;
+		border: solid @btnBorderWidth @btnImportantBorderColor;
+		background-color: #ff7300;
+		background-image: none;
+	}
+}
+
+.fui-btn-action {
+	height: 40px;
+	line-height: 40px;
+	padding: 0 23px;
+	border: solid @btnBorderWidth @btnActionBorderColor;
+	color: @btnActionFontColor;
+	.linear-graident(@btnActionGraidentStart, @btnActionGraidentEnd);
+	&:hover{
+		color: @btnActionFontColor;
+		background-color:@btnBackActiveColor;
+		background-image: none;
+	}
+}
+
+.fui-btn-checked {
+	position: relative;
+	height: 40px;
+	line-height: 40px;
+	padding: 0 23px;
+	border: solid @btnBorderWidth @btnBorderCheckColor;
+	color: @btnFontCheckColor;
+	background-color:@btnBackCheckColor;
+	&:hover {
+		background-color:@btnBackActiveHintColor;
+	}
+	&:after {
+		position: absolute;
+		top: -1px;
+		left: -1px;
+		display: inline-block;
+		width: 16px;
+		height: 16px;
+		background: url("@{fuiImgPath}/icon_sku_check.png") 0 0 no-repeat;
+		background-size: cover;
+		content: '\0020';
+	}
+}
+
+.fui-btn-pic {
+	position: relative;
+	display: inline-block;
+	height: 40px;
+	line-height: 40px;
+	padding-left: 50px;
+	padding-right: 23px;
+	border: solid @btnBorderWidth @btnActionBorderColor;
+	color: @btnFontColor;
+	.linear-graident(@btnActionGraidentStart, @btnActionGraidentEnd);
+	&:hover{
+		color: @btnFontColor;
+		background-color:@btnBackActiveColor;
+		background-image: none;
+	}
+}
+.fui-btn-disabled{
+	height: 40px;
+	line-height: 40px;
+	border: none;
+	padding: 0 23px;
+	color: @btnDisableFontColor;
+	background-color:@btnBackDisableColor;
+	&:hover{
+		color: @btnDisableFontColor;
+	}
+}
+
+

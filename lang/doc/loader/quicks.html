@@ -1,0 +1,133 @@
+﻿
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+		<title>lofty 前端基础框架</title>
+        <link rel="shortcut icon" href="favicon.ico" />
+		<link href="http://loftyjs.com/fdevlib/static/css/lofty/item.min.css" rel="stylesheet" />
+    </head>
+    <body>
+		<div class="doc" id="doc">
+			<div class="main">
+			   <div class="content">
+
+            <article>
+
+<h1>loader : 快速开始
+	<div class="authorInfo">
+		<a href="http://amos.im.alisoft.com/msg.aw?v=2&amp;uid=edgarhoo&amp;site=cnalichn&amp;s=1" target="_blank">
+			<img width="17" border="0" align="absMiddle" height="16" src="http://img.china.alibaba.com/cms/upload/search/fdevlib/alitalk.png">
+			<span class="author">冯汉军</span>
+		</a>
+	</div>
+</h1>
+<h2 id="import-lofty">一：引入加载器</h2>
+
+<p>直接在页面中添加标签引用：</p>
+
+ <pre style="margin-left: 24px;" class="prettyprint language-html"><code> &lt;script src="http://style.c.aliimg.com/m/lofty/port/lofty.js"&gt;&lt;/script&gt;
+</code></pre>
+
+<h2 id="import-jquery">二：引入appframework基础库</h2>
+
+<p>直接在页面中添加标签引用：</p>
+ <pre style="margin-left: 24px;" class="prettyprint language-html"><code> &lt;script src="http://style.c.aliimg.com/m/lofty/gallery/appframework/af.js"&gt;&lt;/script&gt;
+</code></pre>
+
+<h2 id="module-write">三：定义一个 AMD 模块</h2>
+
+<p>定义一个 AMD 模块，并保存为一个独立文件 my-module.js </p>
+
+ <pre style="margin-left: 24px;"  class="prettyprint language-js"><code>define( 'lofty/lang/doc/loader/my-module',[], function( ){
+    var myModule = {
+	  say:function( message ){
+		alert( message );
+	  };
+	}
+    return myModule;
+} );
+
+</code></pre>
+
+<p>上述模块定义等同于下面的格式：</p>
+ <pre style="margin-left: 24px;"  class="prettyprint language-js"><code>
+define( 'lofty/lang/doc/loader/my-module', ['exports'], function( exports ){
+    
+    exports.page = function( message ){
+        console.log( message );
+    };
+} );
+</code></pre>
+<h2 id="module-write">四：配置 lofty.config </h2>
+
+<p><b>若需异步加载各模块</b>：设置 amd 标识为 ture，同时配置resolve规则（否则需要手工将 my-module.js 以 script 标签的方式引入页面）</p>
+<pre style="margin-left: 24px;"  class="prettyprint language-js"><code>lofty.config({
+  amd:true
+})
+</code></pre>
+<br/>
+<p>resolve 是<b>异步加载模块</b>时 id 到 物理文件实际 url 的映射规则，应用可根据实际情况个性化配置（以style_search为例）</p>
+<p>注：引用 lofty、sys、gallery目录下的组件无需再定义 resolve 规则，因为种子文件 lofty.js 中已包含了这些路径的定义。</p>
+<pre style="margin-left: 24px;"  class="prettyprint language-js"><code>lofty.config({
+  resolve: function( id ) {
+	var rStyle = /\.css(?:\?|$)/,
+	parts = id.split('/'),
+	root = parts[0],
+	type = rStyle.test( id ) ? 'css/' : 'js/';
+
+	switch ( root ){
+	  case 'cml':
+	  case 'plugins':
+	  case 'plugins.others':
+		id = 'app/search/' + type + 'list/'  + id;
+	  break;
+	}
+	return id;
+   }
+})
+</code></pre>
+
+<p>如果是简单的 Demo 页面，可直接将上述配置写在 Demo 页面中。若是应用级页面，请将这些配置项统一放在 style 根目录的<a href="http://style.c.aliimg.com/fdevlib/js/lofty/lang/doc/resolve/resolve.html" target="_blank"> app.config.js </a>文件中</p>
+<br/>
+<p><b>若无需异步加载模块</b>：则不用设置 amd 及 resovle 规则，但是需要把页面依赖的全部 js 文件手工引入到页面中。（<b style="color:red">非推荐方式</b>）</p>
+
+
+<h2 id="module-write">五：使用模块</h2>
+<p>现在想要使用 myModule 模块，可以这样做：</p>
+
+ <pre style="margin-left: 24px;"  class="prettyprint language-js"><code>define(['lofty/lang/doc/loader/my-module'], function( myModule ){
+    
+    myModule.say( 'hello world!' );
+} );
+</code></pre>
+
+<h2 id="debug">六：模块加载调试</h2>
+
+<p>若希望看到 lofty 加载器加载模块的一些 log ，则可以触发 debug 状态：</p>
+<br/>
+<p>触发debug状态有两种方式：</p>
+
+<p>1： 在页面url加上<code>lofty.debug=true</code>访问即可</p>
+
+<p>2： 在代码中加入：</p>
+
+ <pre style="margin-left: 24px;" class="prettyprint language-js"><code>lofty.config({
+    debug: true
+});
+</code></pre>
+
+<h2 id="example">完整的示例</h2>
+
+<p><a href="http://style.c.aliimg.com/fdevlib/js/lofty/lang/doc/loader/demo.html?lofty.debug=true" target="_blank">hello world debug</a></p>
+
+            </article>
+		 </div>
+        </div>
+	  </div>
+	<script src="http://loftyjs.com/fdevlib/static/js/lofty/item.min.js"></script>
+	<script>
+		prettyPrint();
+	</script>
+    </body>
+</html>

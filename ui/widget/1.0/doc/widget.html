@@ -1,0 +1,140 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+		<title>lofty 前端基础框架</title>
+        <link rel="shortcut icon" href="favicon.ico" />
+		<link href="http://loftyjs.com/fdevlib/static/css/lofty/item.min.css" rel="stylesheet" />
+    </head>
+    <body>
+		<div class="doc" id="doc">
+			<div class="main">
+				<div class="content">
+				<h1>Widget : UI基础类
+					<span class="mobile">PC & mobile</span>
+					<div class="authorInfo">
+						<a href="http://amos.im.alisoft.com/msg.aw?v=2&amp;uid=wtxidian&amp;site=cntaobao&amp;s=1" target="_blank">
+							<img width="17" border="0" align="absMiddle" height="16" src="http://img.china.alibaba.com/cms/upload/search/fdevlib/alitalk.png">
+							<span class="author">王涛</span>
+						</a>
+					</div>
+				</h1>
+				<h2 id="position">简介</h2>
+				<p>
+					<a target="_blank" href="http://style.c.aliimg.com/fdevlib/js/lofty/ui/widget/1.0/widget.js">Widget</a> 是 FUI 框架中的所有 UI 组件的基础类，同时也可作为各业务线创建业务线级别的 UI 组件的基类使用。它继承自 <a target="_blank" href="http://style.c.aliimg.com/fdevlib/js/lofty/lang/doc/base/doc/index.html">Base类 </a>，拥有Base类的所有功能。
+				</p>
+				<p>使用同一个 Widget 基类构建基础组件和业务通用组件，便于产品线间的组件互通，并提炼出更优秀的组件到公共组件库中，推荐大家使用！</p>
+								
+				<h2 id="relation">创建一个继承自 Widget 的类</h2>
+				
+				<p><a target="_blank" href="../examples/tabs.js">继承Widget的新类模板</a></p>
+<pre class="prettyprint language-js">
+
+  define('mytest/myWidget', ['lofty/lang/class', 'ui/widget/1.0'], function(Class, Widget){
+	  var myWidget = Class ( Widget, {
+		options: {
+			isAutoPlay: true		//组件默认属性
+		},
+		// myWidget的入口函数
+		_create:function (config){
+			
+		}
+	  });
+	  return myWidget;
+  });			
+  
+</pre>
+
+
+		<h2>Widget的主要方法</h2>
+			
+		<p> <b>init ()：</b>完成属性初始化、组件创建方式判断、组件内事件绑定、调用基类入口函数 _create() 的工作。</p>
+		<p> <b>render ()：</b>基类有默认实现，将组件根节点插入到Dom文档中，不重复插入。 基类可以选择覆盖。</p>
+		
+		<h2>Widget基类功能  --  组件有多种渲染方式的支持</h2>
+		
+		<p>在 <b>buildElement()</b> 函数中，根据实例化组件时<b>传入的 tpl 参数的值</b>，可以判断组件的渲染方式</p>
+				
+		<ul>
+			<li>静态渲染 (static)	;&nbsp;&nbsp;&nbsp	-- tpl 值为 id 或 class 选择器字符串，组件将基于页面上已有的 Dom 节点构建（不生成新Dom，只绑定事件）</li>
+			<li>js动态渲染 (dynamic)&nbsp;&nbsp;&nbsp    -- tpl 值为模板字符串，或是页面的一个 script 标签对应的 id、class 选择器字符串</li>
+			<li>标签自动渲染 (autoRender) ;&nbsp;&nbsp;&nbsp  -- 页面上的 div 带有 data-fui-widget 属性。</li>
+		</ul>
+
+		
+<pre class="prettyprint language-js">
+
+  //1、静态渲染： tpl 来自页面上已有的Dom节点
+   var tab1 = new Tabs({
+		tpl:'#staticTab'
+   });
+   
+   //2、动态渲染： 无需传入tpl参数，因为组件内部js中已定义了该参数
+  var tab2 = new Tabs({
+		container:'#dynamicTab',
+		children: [{
+			label: 'Tab1',
+			content: '&lt;p&gt; Tab1 content&lt;/p&gt; '
+		}, {
+			label: 'Tab2',
+			content: '&lt;p&gt; Tab2 content&lt;/p&gt; '
+		}]
+  });
+  
+</pre>
+
+			<p><a target="_blank" href="../examples/widget.html">各种组件渲染方式的Demo</a></p>
+			
+			<br/>
+		
+			<h2>Widget基类功能  --  组件内事件委托机制</h2>
+
+			<p>无论渲染方式如何，<b>buildElement()</b>最终会构建得到组件的根节点对象 --> this.get('el')，init 函数执行过程中，
+			通过 bindEvent 函数将定义在 UI 基类 events 对象中的 节点选择器 + 事件 + callback 以事件委托的方式自动注册到跟节点上。events 对象格式如下：</p>
+			
+<pre class="prettyprint language-js">
+
+	/**
+	 * 组件内事件集中在events变量中定义，框架会负责将这些事件自动以事件委托的方式注册，组件开发者只需要定义回调函数即可。
+	 */	
+	  events:{
+	     '#myWidget':{'mouseover': function(e){}},								//组件内部事件
+	     '.fui-title':{'click':'onShowTitle', mouseover:'onHoverTitle'},		         	//组件内部事件
+	     '':{'mouseenter': function(e){}},									  //选择器为空值时，代表事件绑定到组件根节点上
+	     'document':{'click': 'oncClickCall'},									//组件需要监听外部document的事件
+	     'window':{'mousedown': function(e){}}								//组件需要监听外部window的事件
+	   }
+	 	
+  
+	 // 注意：由于使用事件委托，回调函数中的 this 是 widget 对象自身，可使用 $(e.currentTarget) 等获取事件触发元素。
+</pre>
+			<br/>
+			<p>除事件绑定外，组件的根节点对象 this.get('el') 是组件内部的重要对象，不允许为空值。</p>
+	
+			<h2>Widget基类功能  --  暴露组件模板自定义渲染接口</h2>
+			
+			<p><b>handleTpl</b> 函数可供子类覆盖，在此函数中子类可以实现对 tpl 模板的个性化处理。若有个性化数据，可以配合 tplData 渲染，
+			使得模板能够被更灵活的根据组件需要被处理。</p>
+			
+			<p>FUI 使用的默认模板渲染引擎是 <a href="http://style.c.aliimg.com/fdevlib/js/lofty/util/template/1.0/doc/index.html" target="_blank">artTemplate</a>，有几点优势：</p>
+			<ul>
+				<li>默认语法接近Sweet</li>
+				<li>渲染效率高</li>
+				<li>支持子模板渲染</li>
+				<li>支持自定义语法</li>
+			</ul>
+	<br/>
+	<br/>
+			</div>
+			</div>
+		</div>
+			
+		<script src="http://loftyjs.com/fdevlib/static/js/lofty/item.min.js"></script>
+		<script>
+			prettyPrint();
+		</script>
+
+    </body>
+</html>

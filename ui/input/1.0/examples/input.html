@@ -1,0 +1,92 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport">
+	<title>lofty 前端基础框架</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+	
+	<!-- Demo页面自身所需的基本样式，全局Reset文件在demo-mobile.min.css中引入 -->
+	<link href="http://loftyjs.com/fdevlib/static/css/lofty/demo-mobile.min.css" rel="stylesheet" />
+	
+	<script src="http://style.c.aliimg.com/m/lofty/port/lofty.js"></script>
+	<script src="http://style.c.aliimg.com/m/lofty/gallery/appframework/af.js"></script>
+
+	<!-- 实际使用时将 $SkinType 替换为 "back" 或 "front" -->
+	<script type="text/javascript">
+		var cssUrls = ["http://style.c.aliimg.com/m/lofty/ui/input/1.0/input.css"];
+	</script>
+	<style type="text/css">
+		.caption {
+			display: inline-block;
+			margin-bottom: 5px;
+			padding: 4px 10px;
+			border: 1px dashed #ccc;
+			border-radius: 5px;
+			color: #169fff;
+		}
+	</style>
+</head>
+
+<body>
+<div class="demo-content">
+
+<!-- 普通状态下的input -->
+<div class="demo-widget">
+ <div class="demo-widget-dom">
+ 	<span class="caption">普通状态的input</span>
+ 	<div class="fui-input">
+  		<input type="text" placeholder="会员名"></input>
+ 	</div>
+ </div>
+</div>
+
+<!-- 普通状态(有删除图标)下的input -->
+<div class="demo-widget">
+ <div class="demo-widget-dom">
+ 	<span class="caption">普通状态(有删除图标)下的input</span>
+ 	<div class="fui-input fui-input-del">
+  		<input type="text" placeholder="会员名" value="已经填写了一些文字了"></input>
+  		<i class="fui-input-del-icon"></i>
+ 	</div>
+ </div>
+</div>
+
+<!-- password状态下的input -->
+<div class="demo-widget">
+ <div class="demo-widget-dom">		
+ 	<span class="caption">密码input</span>
+ 	<div class="fui-input">
+  		<input placeholder="密码" type="password"></input>
+ 	</div>
+ </div>
+</div>
+
+<!-- error状态下的input -->
+<div class="demo-widget">
+ <div class="demo-widget-dom">		
+ 	<span class="caption">错误状态的input</span>
+ 	<div class="fui-input fui-input-err">
+  		<input type="text" placeholder="会员名" value="文小周"></input>
+  		<span class="fui-input-hint">该会员名已被使用。您可:选用文字+特殊数字的组合会员名</span>
+ 	</div>
+ </div>
+</div>
+
+<!-- textarea -->
+<div class="demo-widget">
+ <div class="demo-widget-dom">		
+ 	<span class="caption">普通状态的textarea</span>
+ 	<div class="fui-input">
+  		<textarea placeholder="增加备注"></textarea>
+ 	</div>
+ </div>
+</div>
+
+</div>
+
+
+<!-- Demo页面自身所需的JS，实际项目中无需引入 -->
+<script src="http://loftyjs.com/fdevlib/static/js/lofty/demo.min.js" type="text/javascript"></script>	
+</body>
+</html>

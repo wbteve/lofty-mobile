@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <title>lofty 前端基础框架</title>
+
+    <!-- Demo页面自身所需的基本样式，全局Reset文件在demo-mobile.min.css中引入 --->
+    <link href="http://loftyjs.com/fdevlib/static/css/lofty/demo-mobile.min.css" rel="stylesheet" />
+
+    <style>
+        .show-action{
+            height:50px;
+            padding:2px 5px;
+            position: fixed;
+        }
+        .fui-dialog-body{
+            width:100%;
+            height:300px;
+            background-color: #ff7300;
+        }
+        .fui-dialog-body .btn{
+            display: block;
+            border: none;
+            background-color: #006BA4;
+            width:70%;
+            height:30%;
+            padding-top: 5px;
+            padding-bottom: 5px;
+            margin-top: 5px;
+            margin-bottom: 5px;
+            margin-left:auto;
+            margin-right:auto;
+        }
+    </style>
+</head>
+<body style="height:1000px">
+<button class="fui-btn-important show-action">show-action</button>
+<div class="fui-dialog-body fd-hide">
+    <button class="fui-btn1 btn">test</button>
+    <button class="fui-btn2 btn">test</button>
+    <button class="d-close btn">close</button>
+</div>
+
+<div class="demo-content">
+    <div class="demo-widget">
+        <div class="demo-widget-dom">
+
+            <script src="http://style.c.aliimg.com/m/lofty/port/lofty.js"></script>
+            <script src="http://style.c.aliimg.com/m/lofty/gallery/appframework/af.js"></script>
+            <script>
+
+                define(['fui/actionsheet/1.0','util/touchevents/1.0','jquery'], function(ActionSheet, touchevent, $){
+                    var onEvnet = $.os.supportsTouch ? 'tap' : 'click';
+                    var actionSheet = new ActionSheet({
+                        tpl:".fui-dialog-body",
+                        isModal:false,
+                        buttons:[
+                            {
+                                'event':onEvnet,//事件类型
+                                'selector':'.fui-btn1',//要绑定事件的元素
+                                'callback':function(popup,paramObj){//事件的回调函数
+                                    alert(paramObj.name);
+                                    console.log(this);//这里的this指向的是当前的组件实例
+                                },
+                                'paramObj':{//回调函数要传入的参数(封装成对象便于管理)
+                                    'name':'按钮1'
+                                }
+                            },
+                            {
+                                'event':onEvnet,
+                                'selector':'.fui-btn2',
+                                'callback':function(popup,paramObj){
+                                    alert(paramObj.name);
+                                },
+                                'paramObj':{
+                                    'name':'按钮2'
+                                }
+                            },
+                            {
+                                'event':onEvnet,
+                                'selector':'.d-close',
+                                'callback':function(popup,paramObj){
+                                    this.hide();
+                                }
+                            }
+                        ]
+                    });
+                    //dialog显示
+                    actionSheet.show();
+                    $(".show-action").on(onEvnet,function(){
+                        actionSheet.show();
+                    });
+                });
+
+            </script>
+
+        </div>
+    </div>
+</div>
+<!-- Demo页面自身所需的JS，实际项目中无需引入 --->
+<script src="http://loftyjs.com/fdevlib/static/js/lofty/demo.min.js" type="text/javascript"></script>
+</body>
+</html>

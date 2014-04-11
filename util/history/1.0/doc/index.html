@@ -1,0 +1,139 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+		<meta name="viewport" content="initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+
+		<title>lofty 前端基础框架</title>
+        <link rel="shortcut icon" href="favicon.ico" />
+		<link href="http://loftyjs.com/fdevlib/static/css/lofty/item.min.css" rel="stylesheet" />
+    </head>
+    <body>
+		<div class="doc" id="doc">
+			<div class="main">
+				<div class="style-menu" id="dpl_style_menu">
+					
+				</div>
+					
+				<h1>history : 历史管理组件
+					<div class="authorInfo">
+						<a href="http://amos.im.alisoft.com/msg.aw?v=2&amp;uid=wtxidian&amp;site=cntaobao&amp;s=1" target="_blank">
+							<img width="17" border="0" align="absMiddle" height="16" src="http://img.china.alibaba.com/cms/upload/search/fdevlib/alitalk.png">
+							<span class="author">王涛</span>
+						</a>
+				    </div>
+				</h1>
+				
+				<div class="row-fluid">
+					<div class="span19 demo-container">
+					  <iframe id="dpl_demo" class="demo-frame" width="100%" height="100%" frameborder="0"></iframe>
+					</div>
+					<div class="span4 nav-list">
+					  <h2 class="nav-title">示例</h2>
+					  <div id="dpl_menubar">
+					  
+					    <!--demo页面的路径统一放在这个json变量里面定义-->
+						<script type="text/javascript">
+							var noDPL = true;
+							var demoArray = [
+								{'txt':'初始化定义路由规则', 'href':'../examples/router.html'}
+							];
+						</script>
+					  </div>
+					</div>
+				</div>
+				
+				<h2>介绍</h2>
+				<ul>
+					<li>History 是一个单例类，服务于 <a href="style.c.aliimg.com/m/lofty/util/router/1.0/doc/index.html" target="_blank">Router</a> 组件的，并作为全局路由服务，用于处理 hasChange 事件或 pushState ,匹配适合的路由，并触发回调函数。</li>
+					
+				</ul>
+				
+
+				<h2>使用方法</h2>
+				
+<pre class="prettyprint linenums"> 
+define(['jquery','util/router/1.0', 'util/history/1.0'], function($, Router, History){
+
+	// Instantiate the router
+	var appRouter = new Router({
+	
+	   routes:{
+		"" : "initCallback",
+	　　　　"help" : "helpCallback"
+	　　},
+	    
+	   history:false,
+	   
+	   initCallback:function(){
+		  $('#routerVal').html("hash为空");
+		  History.stop();
+	　　},
+	
+	   helpCallback:function(){
+		  $('#routerVal').html("helpCallback");
+	　　}
+	});
+	
+	History.start();
+});
+
+</pre>			
+
+			<h2>公共方法</h2>
+				
+				<table class="table table-striped">
+				<thead>
+					  <tr>
+					  <th class="name">方法名称</th>
+					  <th class="param">入参说明</th>
+					  <th class="return">返回值</th>
+					  <th class="function">作用说明</th>
+					  </tr>
+				  </thead>
+				  <tbody>
+					  <tr>
+						  <td>start (options)  </td>
+						  <td>options{JSON}<br/>
+						  <ul>
+							<li>root{String}：默认值"/"，应用history计算的 URL 起始值</li>
+							<li>silent{Boolean}：默认值false，若不希望 Router 在 history start 的时候就触发回调，那么设置 slient：true</li>
+							<li>pushState{Boolean}：默认值false，如果要使用 HTML5 的 pushState，那么需要显性值为true</li>
+							<li>hashChange{Boolean}：如果想使用 pushState，而浏览器不支持改为全页面刷新，那么可以设置{hashChange:false}</li>
+						  </ul>
+						  </td>
+						  <td>/</td>
+						  <td>启动 history</td>
+					  </tr>
+					  <tr>
+						  <td>route (route, callback)  </td>
+						  <td>route {String}:路由规则<br/>callback {Function}:路由回调函数</td>
+						  <td>/</td>
+						  <td>动态的创建或修改路由规则</td>
+					  </tr>
+					  <tr>
+						  <td>stop ()  </td>
+						  <td>/</td>
+						  <td>/</td>
+						  <td>停用 history</td>
+					  </tr>
+					  <tr>
+						  <td>getHash ()  </td>
+						  <td>/</td>
+						  <td>hash 值</td>
+						  <td>获取当前的 hash 值</td>
+					  </tr>
+					 
+                 </tbody>
+			  </table>		
+				
+			</div>
+
+			</div>
+		</div>
+		<script src="http://loftyjs.com/fdevlib/static/js/lofty/item.min.js"></script>
+		<script>
+			prettyPrint();
+		</script>
+</body>
+</html>

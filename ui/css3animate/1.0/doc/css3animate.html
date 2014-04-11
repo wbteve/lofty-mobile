@@ -1,0 +1,182 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+		<title>lofty 前端基础框架</title>
+        <link rel="shortcut icon" href="favicon.ico" />
+		<link href="http://loftyjs.com/fdevlib/static/css/lofty/item.min.css" rel="stylesheet" />
+		
+		<style type="text/css">
+			p.tips {
+				color: red;
+				font-size: 18px;
+				font-weight: 700;
+				border: 1px solid #eee;
+				margin-bottom: 10px;
+			}
+		</style>		
+    </head>
+	
+		
+    <body>
+		<div class="doc" id="doc">
+			<div class="main">
+					
+				<h1>css3Animate
+					<span class="mobile" style="vertical-align: middle;">mobile</span>
+					<div class="authorInfo">
+						<a href="http://amos.im.alisoft.com/msg.aw?v=2&amp;uid=yuanlihao1988&amp;site=cntaobao&amp;s=1" target="_blank">
+							<img width="17" border="0" align="absMiddle" height="16" src="http://img.china.alibaba.com/cms/upload/search/fdevlib/alitalk.png">
+							<span class="author">袁力皓</span>
+						</a>
+				    </div>
+				</h1>
+				<p class="tips">注：css3Animate不是一个独立的组件，而是app framework的一个插件，具体用法如下：</p>
+				
+				<div class="row-fluid">
+					<div class="span19 demo-container">
+					  <iframe id="dpl_demo" class="demo-frame" width="100%" height="100%" frameborder="0"></iframe>
+					</div>
+					<div class="span4 nav-list">
+					  <h2 class="nav-title">示例</h2>
+					  <div id="dpl_menubar">
+					  
+						<script type="text/javascript">
+							var demoArray = [
+								{'txt':'translate示例', 'href':'../examples/translate.html'},
+								{'txt':'scale示例', 'href':'../examples/scale.html'},
+								{'txt':'rotate示例', 'href':'../examples/rotate.html'},
+								{'txt':'skew示例', 'href':'../examples/skew.html'},
+								{'txt':'sideMenu示例', 'href':'../examples/sideMenu.html'}
+							];
+						</script>
+					  </div>
+					</div>
+				</div>
+
+	
+			  <h2>配置参数</h2>
+				
+			  <table class="table table-striped">
+				<thead>
+					  <tr>
+					  <th class="name">配置参数</th>
+					  <th class="param">参数类型</th>
+					  <th class="return">参数默认值</th>
+					  <th class="function">作用说明</th>
+					  </tr>
+				  </thead>
+				  <tbody>
+				  	  <tr>
+						  <td>x</td>
+						  <td>number</td>
+						  <td>0</td>
+						  <td>沿X轴移动的距离</td>
+					  </tr>
+					  <tr>
+						  <td>y</td>
+						  <td>number</td>
+						  <td>0</td>
+						  <td>沿Y轴移动的距离</td>
+					  </tr>  
+					  <tr>
+						  <td>origin</td>
+						  <td>string</td>
+						  <td>'0% 0%'</td>
+						  <td>动画变幻的基点位置</td>
+					  </tr>
+					  <tr>
+						  <td>time</td>
+						  <td>number(单位: millisecond)</td>
+						  <td>0</td>
+						  <td>动画持续的时间</td>
+					  </tr>
+					  <tr>
+						  <td>scaleX</td>
+						  <td>number</td>
+						  <td>1</td>
+						  <td>在X轴方向变幻的百分比</td>
+					  </tr>
+					  <tr>
+						  <td>scaleY</td>
+						  <td>number</td>
+						  <td>1</td>
+						  <td>在Y轴方向变幻的百分比</td>
+					  </tr>
+					  <tr>
+						  <td>rotateX</td>
+						  <td>string(单位：deg)</td>
+						  <td>'0deg'</td>
+						  <td>绕X轴转动的角度</td>
+					  </tr>
+					  <tr>
+						  <td>rotateY</td>
+						  <td>string(单位：deg)</td>
+						  <td>'0deg'</td>
+						  <td>绕Y轴转动的角度</td>
+					  </tr>
+					  <tr>
+						  <td>rotateZ</td>
+						  <td>string(单位：deg)</td>
+						  <td>'0deg'</td>
+						  <td>绕Z轴转动的角度</td>
+					  </tr>
+					  <tr>
+						  <td>srewX</td>
+						  <td>string(单位：deg)</td>
+						  <td>'0deg'</td>
+						  <td>沿X轴倾斜的角度</td>
+					  </tr>
+					  <tr>
+						  <td>srewY</td>
+						  <td>string(单位：deg)</td>
+						  <td>'0deg'</td>
+						  <td>沿Y轴倾斜的角度</td>
+					  </tr>
+					  <tr>
+						  <td>width</td>
+						  <td>string(单位：px/百分比)</td>
+						  <td>无</td>
+						  <td>变幻后目标宽度</td>
+					  </tr>
+					  <tr>
+						  <td>height</td>
+						  <td>string(单位：px/百分比)</td>
+						  <td>无</td>
+						  <td>变幻后目标高度</td>
+					  </tr>
+					  <tr>
+						  <td>opacity</td>
+						  <td>number</td>
+						  <td>1</td>
+						  <td>变换后的不透明度</td>
+					  </tr>
+					  <tr>
+						  <td>sucess</td>
+						  <td>function</td>
+						  <td>无</td>
+						  <td>动画成功后的回调</td>
+					  </tr>
+					  <tr>
+						  <td>failure</td>
+						  <td>function</td>
+						  <td>无</td>
+						  <td>动画失败后的回调</td>
+					  </tr>
+					  <tr>
+						  <td>complete</td>
+						  <td>function</td>
+						  <td>无</td>
+						  <td>动画完成（成功/失败）后的回调</td>
+					  </tr>
+                 </tbody>
+			  </table>
+			</div>
+		</div>
+		<script src="http://loftyjs.com/fdevlib/static/js/lofty/item.min.js"></script>
+		<script>
+			prettyPrint();
+		</script>
+</body>
+</html>

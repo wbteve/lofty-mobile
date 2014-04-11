@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>Resource Slot</title>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+    <link rel="shortcut icon" href="favicon.ico" />
+    <link href="http://loftyjs.com/fdevlib/static/css/lofty/item.min.css" rel="stylesheet" />
+</head>
+<body>
+<div class="doc" id="doc">
+    <div class="main">
+        <!--<div class="style-menu" id="dpl_style_menu">
+
+        </div> -->
+
+        <h1>Resource Slot : 在主客H5页面投放的资源位广告
+            <div class="authorInfo">
+                <a href="http://amos.im.alisoft.com/msg.aw?v=2&amp;uid=yuanlihao1988&amp;site=cntaobao&amp;s=1" target="_blank">
+                    <img width="17" border="0" align="absMiddle" height="16" src="http://img.china.alibaba.com/cms/upload/search/fdevlib/alitalk.png">
+                    <span class="author">袁力皓</span>
+                </a>
+            </div>
+        </h1>
+        <h2>该组件用在阿里主客上的插件显示投放的广告，广告类型包括轮播型、纯文字性以及单图片型（包含图文型）。</h2>
+        <h2 style="color: red;">注：因为该组件底层依赖于Wing，所以下方示例中的demo的数据来源都是mock出来的。</h2>
+        <div class="row-fluid">
+            <div class="span19 demo-container">
+                <iframe id="dpl_demo" class="demo-frame" width="100%" height="100%" frameborder="0"></iframe>
+            </div>
+            <div class="span4 nav-list">
+                <h2 class="nav-title">示例</h2>
+                <div id="dpl_menubar">
+
+                    <!--demo页面的路径统一放在这个json变量里面定义-->
+                    <script type="text/javascript">
+                        var demoArray = [
+                            {'txt':'轮播型', 'href':'../examples/swipe.html'},
+                            {'txt':'纯文字型', 'href':'../examples/text.html'},
+                            {'txt':'单图/图文', 'href':'../examples/pic.html'}
+                        ];
+                    </script>
+                </div>
+            </div>
+        </div>
+
+        <h2>使用方法</h2>
+				
+<pre class="prettyprint linenums"> 
+    define(['lofty/ui/resourceslot/1.0/resourceslot'], function(resSlot){
+        resSlot.create({
+            container: '.wrapper',
+            scene: {
+              place: '1',
+              keyword: 'whatever'
+            },
+            sys: {
+              modifyTime: '20140324',
+              city: '',
+              appVer: '',
+              osVer: '',
+              userId: '',
+              ttid: '',
+              imei: '',
+              imsi: ''
+            }
+        });
+    })
+</pre>
+        <h2>配置参数</h2>
+
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th class="name">配置参数</th>
+                <th class="param">参数类型/可选值</th>
+                <th class="return">参数默认值</th>
+                <th class="function">作用说明</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>container(必填)</td>
+                <td>string</td>
+                <td></td>
+                <td>放置广告内容的容器selector</td>
+            </tr>
+            <tr>
+                <td>scene</td>
+                <td>object</td>
+                <td>/</td>
+                <td>包含place/keyword等几个属性</td>
+            </tr>
+            <tr>
+                <td>place</td>
+                <td>string</td>
+                <td>/</td>
+                <td>广告场景，由运营方配置，使用者可直接联系运营方获取各种广告类型相对应的place值</td>
+            </tr>
+            <tr>
+                <td>keyword</td>
+                <td>string</td>
+                <td>/</td>
+                <td>关键词</td>
+            </tr>
+            <tr>
+                <td>sys</td>
+                <td>object</td>
+                <td>/</td>
+                <td>包含modifyTime/city/appVer/osVer/userId/ttid/imei/imsi等属性</td>
+            </tr>
+            <tr>
+                <td>modifyTime</td>
+                <td>string</td>
+                <td>/</td>
+                <td>修改时间，格式为yyyyMMdd</td>
+            </tr>
+            <tr>
+                <td>city</td>
+                <td>string</td>
+                <td>/</td>
+                <td>当前城市</td>
+            </tr>
+            <tr>
+                <td>appVer</td>
+                <td>string</td>
+                <td>/</td>
+                <td>应用版本号</td>
+            </tr>
+            <tr>
+                <td>osVer</td>
+                <td>string</td>
+                <td>/</td>
+                <td>系统版本号</td>
+            </tr>
+            <tr>
+                <td>userId</td>
+                <td>string</td>
+                <td>/</td>
+                <td>用户id</td>
+            </tr>
+            <tr>
+                <td>ttid</td>
+                <td>string</td>
+                <td>/</td>
+                <td>渠道号</td>
+            </tr>
+            <tr>
+                <td>imei</td>
+                <td>string</td>
+                <td>/</td>
+                <td>手机imei</td>
+            </tr>
+            <tr>
+                <td>imsi</td>
+                <td>string</td>
+                <td>/</td>
+                <td>手机imsi</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script src="http://loftyjs.com/fdevlib/static/js/lofty/item.min.js"></script>
+<script>
+    prettyPrint();
+</script>
+</body>
+</html>

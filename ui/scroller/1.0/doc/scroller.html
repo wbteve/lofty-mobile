@@ -1,0 +1,759 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+	<title>lofty 前端基础框架</title>
+
+	<!-- Le styles -->
+	<!-- <link href="http://www.gafish.net/api/assets/css/bootstrap.css" rel="stylesheet">
+	<link href="http://www.gafish.net/api/assets/css/bootstrap-responsive.css" rel="stylesheet"> -->
+	<link href="http://www.gafish.net/api/assets/css/docs.css" rel="stylesheet">
+	<link href="http://loftyjs.com/fdevlib/static/css/lofty/item.min.css" rel="stylesheet" />
+	
+	<link rel="shortcut icon" href="assets/ico/favicon.png">
+	<style type="text/css">
+	/* 实在对不住，原样式太丑了！！！ */
+	.doc .main iframe {
+		height: 750px !important;
+	}
+	
+	.doc .main h3 {
+		border: none !important;
+	}
+	</style>
+  </head>
+
+  <body data-spy="scroll" data-target=".bs-docs-sidebar" style="padding-top: 0; margin-bottom: 50px;">
+  	<div class="doc" id="doc">
+		<div class="main" style="min-height: 100px;">
+			<h1>Scroller
+				<span class="mobile" style="vertical-align: middle;">mobile</span>
+				<div class="authorInfo">
+					<a href="http://amos.im.alisoft.com/msg.aw?v=2&amp;uid=yuanlihao1988&amp;site=cntaobao&amp;s=1" target="_blank">
+						<img width="17" border="0" align="absMiddle" height="16" src="http://img.china.alibaba.com/cms/upload/search/fdevlib/alitalk.png">
+						<span class="author">袁力皓</span>
+					</a>
+			    </div>
+			</h1>
+			<div class="row-fluid">
+				<div class="span19 demo-container">
+				  <iframe id="dpl_demo" class="demo-frame" width="100%" height="100%" frameborder="0"></iframe>
+				</div>
+				<div class="span4 nav-list">
+				  <h2 class="nav-title">示例</h2>
+				  <div id="dpl_menubar">
+				  
+					<script type="text/javascript">
+						var demoArray = [
+							{'txt':'Simple', 'href':'../examples/simple.html'},
+							{'txt':'Horizontal Scroll', 'href':'../examples/horizontal-scroll.html'},
+							{'txt':'Scroller with Input', 'href':'../examples/scroll-input.html'},
+							{'txt':'Pull To Refresh', 'href':'../examples/pull-to-refresh.html'},
+							{'txt':'Infinite Scroll', 'href':'../examples/infinite-scroll.html'},
+							{'txt':'PullUp & PullDown', 'href':'../examples/both.html'},
+							{'txt':'Custom Scrollbar', 'href':'../examples/custom-scrollbar.html'}
+						];
+					</script>
+				  </div>
+				</div>
+			</div>
+
+			<div class="container">
+
+	<!-- Docs nav
+	================================================== -->
+	<div class="row">
+	  <div class="span12">
+		<!-- 概况
+		================================================== -->
+		<section id="overview">
+			<div class="page-header">
+				<h1>概况</h1>
+			</div>
+			<h3>简要介绍</h3>
+			<p>
+				Scroller组件基于<a href="http://cubiq.org/iscroll-4" target="_blank">iScroll 4.2.5</a>封装而成，简化了拉动刷新和无限加载操作，增强了原事件监听机制。
+			</p>
+
+			<h3>iScroll基本信息</h3>
+			<p>官网：http://cubiq.org/iscroll-4</p>
+			<p>更新：2012.07.14</p>
+			<p>版本：v4.2.5</p>
+			<p>兼容：iPhone/Ipod touch >=3.1.1, iPad >=3.2, Android >=1.6, Desktop Webkit, Firefox, Opera desktop/mobile.</p>
+
+			<h3>iScroll的历史</h3>
+			<p>之所以iScroll会诞生，主要是因为无论是在iphone、ipod、android 或是更早前的移动webkit都没有提供一种原生的方式来支持在一个固定高度的容器内滚动内容。 </p>
+			<p>这个不幸的规则导致所有web-app要模拟成app的样子时，只能由一个绝对定位的header 或是footer再加上一个可以内容的滚动的中间区域组成。 </p>
+			<p>幸运的是移动webkit提供了一种强大的硬件加速的CSS属性，这个属性可以用来模拟这个缺失的功能，Iscroll从这里开始了前进之路，但是没有不带刺的玫瑰。让内容滚动像原生方式一般比想象中要难 </p>
+			<div class="alert alert-info">
+				<strong>Tips：</strong>截至2013年，IOS5 添加如下样式 overflow:scroll; -webkit-overflow-scrolling:touch; 已经能够支持区域滚动了。但是andriod4 还是不行...
+			</div>
+			<h3>更多相关资料</h3>
+			<ol>
+				<li><a href="http://cubiq.org/iscroll-4" target="_blank">http://cubiq.org/iscroll-4</a></li>
+				<li><a href="http://www.cnblogs.com/wanghun/archive/2012/10/17/2727416.html" target="_blank">http://www.cnblogs.com/wanghun/archive/2012/10/17/2727416.html</a></li>
+				<li><a href="http://qbaty.iteye.com/blog/1221061" target="_blank">http://qbaty.iteye.com/blog/1221061</a></li>
+			</ol>
+			
+		</section>
+
+
+
+		<!-- 快速上手
+		================================================== -->
+		<section id="quickStart">
+			<div class="page-header">
+				<h1>快速上手</h1>
+			</div>
+
+			<h3>使用指南</h3>
+			<p>在此文档中你会发现很多例子来教会你如何快速上手Scroller脚本库。参看文中的demo小例子并仔细阅读此文档，可能有点小无聊，但是这篇文章中却是Scroller这个脚本库的精髓之所在哦。</p>
+			<p>Scroller需要对所要进行滚动的元素进行初始化，并且不限定一个页面中使用Scroller的元素的个数（这里不考虑您的硬件配置）。滚动元素中内容的类型和长度在一定程度上将会影响Scroller脚本库里可以同时使用的元素的个数。</p>
+			<p>使用Scroller这个脚本库时，DOM树的结构要足够简单，移除不必要的标签，尽量避免过多的标签嵌套使用。</p>
+			<p>最优的使用Scroller的结构如下所示：</p>
+<pre class="prettyprint linenums">
+&lt;div id="wrapper"&gt;
+	&lt;ul&gt;
+		&lt;li&gt;&lt;/li&gt;
+		.....
+	&lt;/ul&gt;
+&lt;/div&gt; 
+</pre>
+			<p>在这个小例子中，ul标签将会被滚动。Scroller一定要与滚动内容外面的wrapper进行联系才会产生效果。</p>
+			<h3>注意事项</h3>
+			<p>只有wrapper里的第一个子元素才可以滚动，如果你想要更多的元素可以滚动，那么你可以试试下面的这种写法：</p>
+<pre class="prettyprint linenums">
+&lt;div id="wrapper"&gt;
+	&lt;div id="scroller"&gt;
+		&lt;ul&gt;
+			&lt;li&gt;&lt;/li&gt;
+			...
+		&lt;/ul&gt;
+		&lt;ul&gt;
+			&lt;li&gt;&lt;/li&gt;
+			...
+		&lt;/ul&gt;
+	&lt;/div&gt;
+&lt;/div&gt;
+</pre>
+			<p>在这个例子中，scroller这个元素可以滚动，即便它包含两个ul元素</p>
+		</section>
+
+
+
+		<!-- 实例化iScroll
+		================================================== -->
+		<section id="caseIscroll">
+			<div class="page-header">
+				<h1>实例化Scroller</h1>
+			</div>
+			<p>Scroller必须在调用之前实例化，如下所示：</p>
+<pre class="prettyprint linenums">
+define(['fui/scroller/1.0'], function(Scroller) {
+	var myScroll = new Scroller({
+		container: '#wrapper'
+	});
+})
+</pre>
+		</section>
+
+
+
+		<!-- iScroll 参数
+		================================================== -->
+		<section id="parameter">
+			<div class="page-header">
+				<h1>Scroller 参数</h1>
+			</div>
+			<p>Scroller参数为一个对象，可以通过指定其中的属性来自定义一些滚动条的属性和方法。
+			<br/>
+			<font color="red">注：该对象必须包含container属性，用来指定滚动条的外层容器，且只能为id选择器，不能为其他类型选择器。</font>
+			</p>
+			<p>比如下面的这段代码：</p>
+<pre class="prettyprint linenums">
+define(['fui/scroller/1.0'], function(Scroller) {
+	var myScroll = new Scroller({
+		container: '#wrapper',
+		hScrollbar: false, 
+		vScrollbar: false
+	});
+})
+</pre>
+			<p>对象所有参数如下（<code>*</code>号为常见参数）：</p>
+			<table class="table table-bordered table-striped">
+				<caption>基本参数</caption>
+				<thead>
+				<tr>
+					<th style="width: 100px;">参数名</th>
+					<th>说明</th>
+					<th>可选值</th>
+					<th>默认值</th>
+				</tr>
+				</thead>
+				<tbody>
+				<tr>
+					<td>container <code>*</code></td>
+					<td>滚动条外层元素selector</td>
+					<td>字符串</td>
+					<td>无</td>
+				</tr>
+				<tr>
+					<td>hScroll <code>*</code></td>
+					<td>是否允许水平滚动</td>
+					<td><code>false</code> 否 <code>true</code> 是</td>
+					<td>true</td>
+				</tr>
+				<tr>
+					<td>vScroll <code>*</code></td>
+					<td>是否允许垂直滚动</td>
+					<td><code>false</code> 否 <code>true</code> 是</td>
+					<td>true</td>
+				</tr>
+				<tr>
+					<td>bounce <code>*</code></td>
+					<td>是否超过实际位置反弹</td>
+					<td><code>false</code> 否 <code>true</code> 是</td>
+					<td>true</td>
+				</tr>
+				<tr>
+					<td>bounceLock</td>
+					<td>当内容少于滚动是否可以反弹  </td>
+					<td><code>false</code> 否 <code>true</code> 是</td>
+					<td>false</td>
+				</tr>
+				<tr>
+					<td>momentum <code>*</code></td>
+					<td>是否开启拖动惯性  </td>
+					<td><code>false</code> 否 <code>true</code> 是</td>
+					<td>true</td>
+				</tr>
+				<tr>
+					<td>lockDirection</td>
+					<td>当水平或垂直拖动时是否锁定另一边的拖动  </td>
+					<td><code>false</code> 否 <code>true</code> 是</td>
+					<td>true</td>
+				</tr>
+				<tr>
+					<td>useTransform</td>
+					<td>是否使用CSS变形  </td>
+					<td><code>false</code> 否 <code>true</code> 是</td>
+					<td>true</td>
+				</tr>
+				<tr>
+					<td>useTransition</td>
+					<td>是否使用CSS变换  </td>
+					<td><code>false</code> 否 <code>true</code> 是</td>
+					<td>false</td>
+				</tr>
+				<tr>
+					<td>checkDOMChanges</td>
+					<td>是否自动检测内容变化 </td>
+					<td><code>false</code> 否 <code>true</code> 是</td>
+					<td>false</td>
+				</tr>
+				<tr>
+					<td>topOffset</td>
+					<td>滚动条绘制时默认已滚动的值(一般用在拖动刷新)</td>
+					<td>数字值</td>
+					<td>0</td>
+				</tr>
+				<tr>
+					<td>x</td>
+					<td>滚动水平初始位置（负值）</td>
+					<td>数字值</td>
+					<td>0</td>
+				</tr>
+				<tr>
+					<td>y</td>
+					<td>滚动垂直初始位置（负值）</td>
+					<td>数字值</td>
+					<td>0</td>
+				</tr>
+				</tbody>
+			</table>
+			<table class="table table-bordered table-striped">
+				<caption>Scrollbar 的相关参数  </caption>
+				<thead>
+				<tr>
+					<th style="width: 120px;">参数名</th>
+					<th style="width: 320px;">说明</th>
+					<th>可选值</th>
+					<th style="width: 200px;">默认值</th>
+				</tr>
+				</thead>
+				<tr>
+					<td>hScrollbar <code>*</code></td>
+					<td>是否显示水平滚动条</td>
+					<td><code>false</code> 否 <code>true</code> 是</td>
+					<td>true</td>
+				</tr>
+				<tr>
+					<td>vScrollbar <code>*</code></td>
+					<td>是否显示垂直滚动条</td>
+					<td><code>false</code> 否 <code>true</code> 是</td>
+					<td>true</td>
+				</tr>
+				<tr>
+					<td>fixedScrollbar</td>
+					<td>在iOS系统上，当元素拖动超出了scroller的边界时，滚动条会收缩，设置为<code>true</code>可以禁止滚动条超出scroller的可见区域。</td>
+					<td><code>false</code> 否 <code>true</code> 是</td>
+					<td>默认在Android上为<code>true</code>， iOS上为<code>false</code></td>
+				</tr>
+				<tr>
+					<td>hideScrollbar</td>
+					<td>是否隐藏滚动条</td>
+					<td><code>false</code> 否 <code>true</code> 是</td>
+					<td>默认在Android上为<code>false</code>， iOS上为<code>true</code></td>
+				</tr>
+				<tr>
+					<td>fadeScrollbar</td>
+					<td>滚动条是否渐隐渐显</td>
+					<td><code>false</code> 否 <code>true</code> 是</td>
+					<td>默认在Android上为<code>false</code>， iOS上为<code>true</code></td>
+				</tr>
+				<tr>
+					<td>scrollbarClass <code>*</code></td>
+					<td>字定义滚动条的样式名</td>
+					<td>自定义class</td>
+					<td>''</td>
+				</tr>
+				</tbody>
+			</table>
+			<table class="table table-bordered table-striped">
+				<caption>Zoom 放大相关的参数 </caption>
+				<thead>
+				<tr>
+					<th style="width: 100px;">参数名</th>
+					<th>说明</th>
+					<th>可选值</th>
+					<th>默认值</th>
+				</tr>
+				</thead>
+				<tr>
+					<td>zoom</td>
+					<td>是否放大  </td>
+					<td><code>false</code> 否 <code>true</code> 是</td>
+					<td>false</td>
+				</tr>
+				<tr>
+					<td>zoomMin</td>
+					<td>放大的最小倍数 </td>
+					<td>数字值</td>
+					<td>1</td>
+				</tr>
+				<tr>
+					<td>zoomMax</td>
+					<td>放大的最大倍数</td>
+					<td>数字值</td>
+					<td>4</td>
+				</tr>
+				<tr>
+					<td>doubleTapZoom</td>
+					<td>双击放大倍数</td>
+					<td>数字值</td>
+					<td>2</td>
+				</tr>
+				<tr>
+					<td>wheelAction</td>
+					<td>鼠标滚动行为（还可以是zoom）  </td>
+					<td><code>none</code> 不支持 <code>'scroll'</code> 鼠标滚动 <code>'zoom'</code> 鼠标缩放</td>
+					<td>'scroll'</td>
+				</tr>
+				</tbody>
+			</table>
+			<table class="table table-bordered table-striped">
+				<caption>snap 捕捉元素相关的参数 </caption>
+				<thead>
+				<tr>
+					<th style="width: 100px;">参数名</th>
+					<th>说明</th>
+					<th>可选值</th>
+					<th>默认值</th>
+				</tr>
+				</thead>
+				<tr>
+					<td>snap</td>
+					<td>是否开启捕捉元素，snap值可以为true 或是 DOM元素的tagName，当为true 时，捕捉的元素会根据可滚动的位置和滚动区域计算得到可滑动几页。如果为tagName,则滑动会对齐到捕捉的元素上。</td>
+					<td><code>false</code> 否 <code>true</code> 是 <code>DOM元素的tagName</code> </td>
+					<td>false</td>
+				</tr>
+				<tr>
+					<td>snapThreshold</td>
+					<td>滑动的长度限制，只有大于这个距离才会触发捕捉元素事件 </td>
+					<td>数字值</td>
+					<td>1</td>
+				</tr>
+				</tbody>
+			</table>
+			<table class="table table-bordered table-striped">
+				<caption>拉动刷新和无限加载相关的参数 </caption>
+				<thead>
+				<tr>
+					<th style="width: 100px;">参数名</th>
+					<th>说明</th>
+					<th>可选值</th>
+					<th>默认值</th>
+				</tr>
+				</thead>
+				<tr>
+					<td>topSelector</td>
+					<td>往下拉动滚动条时展示的拉动刷新相关信息的顶层DOM选择器。</td>
+					<td>string</td>
+					<td>无</td>
+				</tr>
+				<tr>
+					<td>topGapThreshold</td>
+					<td>设置拉动超过topSelector多长距离时触发pullToRefresh事件。</td>
+					<td>数字值（单位：px）</td>
+					<td>5</td>
+				</tr>
+				<tr>
+					<td>bottomSelector</td>
+					<td>往上拉动滚动条时展示的无限加载相关信息的顶层DOM选择器。</td>
+					<td>string</td>
+					<td>无</td>
+				</tr>
+				<tr>
+					<td>bottomGapThreshold</td>
+					<td>设置拉动超过底部无线加载多长距离时触发infiniteScroll事件。</td>
+					<td>数字值（单位：px）</td>
+					<td>5</td>
+				</tr>
+				</tbody>
+			</table>
+			<table class="table table-bordered table-striped">
+				<caption>自定义 Events 的相关参数    </caption>
+				<thead>
+				<tr>
+					<th style="width: 100px;">参数名</th>
+					<th>说明</th>
+					<th>可选值</th>
+					<th>默认值</th>
+				</tr>
+				</thead>
+				<tr>
+					<td>onBeforeScrollStart</td>
+					<td>开始滚动前的事件回调<br/>默认是阻止浏览器默认行为  </td>
+					<td rowspan='18'><code>null</code> 不设置 <br/><code>Function</code> 自定义函数</td>
+					<td>function (e) { e.preventDefault(); }</td>
+				</tr>
+				<tr>
+					<td>onRefresh</td>
+					<td>refresh 的回调</td>
+					<td rowspan='17'>null</td>
+				</tr>
+				<tr>
+					<td>onScrollStart</td>
+					<td>开始滚动的回调  </td>
+				</tr>
+				<tr>
+					<td>onBeforeScrollMove</td>
+					<td>在内容移动前的回调  </td>
+				</tr>
+				<tr>
+					<td>onScrollMove</td>
+					<td>内容移动的回调</td>
+				</tr>
+				<tr>
+					<td>onBeforeScrollEnd</td>
+					<td>在滚动结束前的回调</td>
+				</tr>
+				<tr>
+					<td>onScrollEnd</td>
+					<td>在滚动完成后的回调</td>
+				</tr>
+				<tr>
+					<td>onTouchEnd</td>
+					<td>手离开屏幕后的回调  </td>
+				</tr>
+				<tr>
+					<td>onDestroy</td>
+					<td>销毁实例的回调</td>
+				</tr>
+				<tr>
+					<td>onZoomStart</td>
+					<td>放大开始时的回调</td>
+				</tr>
+				<tr>
+					<td>onZoom</td>
+					<td>放大的回调</td>
+				</tr>
+				<tr>
+					<td>onZoomEnd</td>
+					<td>放大结束后的回调</td>
+				</tr>
+				<tr>
+					<td>onPullDownChange</td>
+					<td>判断当前滚动是否已经超过之前设置的topSelector（具体超过多少由topGapThreshold设定），如若超过，则触发此事件。</td>
+				</tr>
+				<tr>
+					<td>onPullDownRestore</td>
+					<td>判断滚动是否从超过topSelector后又回到了topSelector区域，若如此，则触发此事件。</td>
+				</tr>
+				<tr>
+					<td>onPullToRefresh</td>
+					<td>判断是否在滚到超过topSelector区域后松开手指，若如此，则触发此事件，开发人员可在回调中做调整DOM操作，并调用Scroller对象的refresh方法来重新绘制Scroller。</td>
+				</tr>
+				<tr>
+					<td>onPullUpChange</td>
+					<td>判断当前滚动是否已经超过bottomSelector的底部（具体超过多少由bottomGapThreshold设定），如若超过，则触发此事件。</td>
+				</tr>
+				<tr>
+					<td>onPullUpRestore</td>
+					<td>判断滚动是否从超过bottomSelector后又回到了bottomSelector区域，若如此，则触发此事件。</td>
+				</tr>
+				<tr>
+					<td>onInfiniteScroll</td>
+					<td>判断是否在滚到超过bottomSelector区域后松开手指，若如此，则触发此事件，开发人员可在回调中做调整DOM操作，并调用Scroller对象的refresh方法来重新绘制Scroller。</td>
+				</tr>
+				</tbody>
+			</table>
+			<div class="alert alert-info">
+				<strong>Tips：</strong>以上所有事件还可以通过on方式来进行绑定，并且在使用on时，可以对同一个事件绑定多个回调函数。
+			</div>
+		</section>
+
+
+
+		<!-- iScroll 方法API
+		================================================== -->
+		<section id="api">
+			<div class="page-header">
+				<h1>Scroller 方法API</h1>
+			</div>
+			<h3>get </h3>
+			<p>获取Scroller对象的属性值，key的值包括上边介绍的所有非事件属性。</p>
+			<h3>set </h3>
+			<p>设置Scroller对象的属性值，key的值包括上边介绍的所有非事件属性。</p>
+			<h3>getContainer </h3>
+			<p>获得Scroller对象的容器id。</p>
+			<h3>destroy </h3>
+			<p>销毁你实例化的Scroller 实例，包括之前绑定的所有Scroller 事件。</p>
+			<h3>refresh </h3>
+			<p>这个方法非常有用，当你的滚动区域的内容发生改变 或是 滚动区域不正确，都用通过调用refresh 来使得Scroller 重新计算滚动的区域，包括滚动条，来使得Scroller 适合当前的dom。 </p>
+			<h3>scrollTo </h3>
+			<p>这个方法接受4个参数 x, y, time, relative x 为移动的x轴坐标，y为移动的y轴坐标, time为移动时间，relative表示是否相对当前位置。</p>
+			<h3>scrollToElement  </h3>
+			<p>这个方法实际上是对scrollTo的进一步封装，接受两个参数(el,time)，el为需要滚动到的元素引用，time为滚动时间。 </p>
+			<h3>scrollToPage   </h3>
+			<p>此方法接受三个参数(pageX,pageY,time) 当滚动内容的高宽大于滚动范围时，Scroller 会自动分页，然后就能使用scrollToPage方法滚动到页面。当然，当hscroll 为false 的时候，不能左右滚动。pageX这个参数就失去效果  </p>
+			<h3>disable </h3>
+			<p>调用这个方法会立即停止动画滚动，并且把滚动位置还原成0，取消绑定touchmove, touchend、touchcancel事件。  </p>
+			<h3>enable  </h3>
+			<p>调用这个方法，使得iscroll恢复默认正常状态 </p>
+			<h3>stop </h3>
+			<p>立即停止动画 </p>
+			<h3>zoom  </h3>
+			<p>改变内容的大小倍数,此方法接受4个参数，x,y,scale,time 分别表示的意思为，放大的基准坐标，以及放大倍数，动画时间  </p>
+			<h3>isReady   </h3>
+			<p>当Scroller 没有处于正在滚动，没有移动过，没有改变大小时，此值为true </p>
+		</section>
+
+		<!-- 简单案例
+		================================================== -->
+		<section id="refresh">
+			<div class="page-header">
+				<h1>简单案例</h1>
+			</div>
+<pre class="prettyprint linenums">
+define(['fui/scroller/1.0'], function(Scroller) {
+	var myScroll = new Scroller({
+		container: '#wrapper'
+	});
+})
+</pre>
+			<p>Demo如下所示：</p>
+			<iframe src="../examples/simple.html" frameborder="0" width="100%" height="400px"></iframe>
+		</section>
+
+		<!-- 拉动刷新
+		================================================== -->
+		<section id="refresh">
+			<div class="page-header">
+				<h1>拉动刷新</h1>
+			</div>
+			<h3>实现原理</h3>
+			<ol>
+				<li>通过 <code>topOffset</code> 参数属性设置Scroller已经滚动的基准值；</li>
+				<li>通过 <code>onPullDownChange</code> 参数方法判断当前滚动是否已经超过之前设置的topSelector（具体超过多少由topGapThreshold设定），如若超过，则触发此事件。</li>
+				<li>通过 <code>onPullDownRestore</code> 参数方法判断滚动是否从超过topSelector后又回到了topSelector区域，若如此，则触发此事件。</li>
+				<li>通过 <code>onPullToRefresh</code> 参数方法判断是否在滚到超过topSelector区域后松开手指，若如此，则触发此事件，开发人员可在回调中做调整DOM操作，并调用Scroller对象的refresh方法来重新绘制Scroller。</li>
+			</ol>
+<pre class="prettyprint linenums">
+define(['fui/scroller/1.0'], function(Scroller) {
+	var myScroll = new Scroller({
+		container: '#wrapper',
+		topOffset: 50,
+		topSelector: '#pullDown',
+		topGapThreshold: 5,
+		onPullDownChange: function() {...},
+		onPullDownRestore: function() {...},
+		onPullToRefresh: function() {...}
+	});
+})
+</pre>
+			<p>Demo如下所示：</p>
+			<iframe src="../examples/pull-to-refresh.html" frameborder="0" width="100%" height="400px"></iframe>
+		</section>
+
+		<!-- 无限加载
+		================================================== -->
+		<section id="refresh">
+			<div class="page-header">
+				<h1>无限加载</h1>
+			</div>
+			<h3>实现原理</h3>
+			<ol>
+				<li>通过 <code>onPullUpChange</code> 参数方法判断当前滚动是否已经超过bottomSelector的底部（具体超过多少由bottomGapThreshold设定），如若超过，则触发此事件。</li>
+				<li>通过 <code>onPullUpRestore</code> 参数方法判断滚动是否从超过bottomSelector后又回到了bottomSelector区域，若如此，则触发此事件。</li>
+				<li>通过 <code>onInfiniteScroll</code> 参数方法判断是否在滚到超过bottomSelector区域后松开手指，若如此，则触发此事件，开发人员可在回调中做调整DOM操作，并调用Scroller对象的refresh方法来重新绘制Scroller。</li>
+			</ol>
+<pre class="prettyprint linenums">
+define(['fui/scroller/1.0'], function(Scroller) {
+	var myScroll = new Scroller({
+		container: '#wrapper',
+		bottomSelector: '#pullUp',
+		bottomGapThreshold: 5,
+		onPullUpChange: function() {...},
+		onPullUpRestore: function() {...},
+		onInfiniteScroll: function() {...}
+	});
+})
+</pre>
+			<p>Demo如下所示：</p>
+			<iframe src="../examples/infinite-scroll.html" frameborder="0" width="100%" height="400px"></iframe>
+		</section>
+
+		<!-- 缩放
+		================================================== -->
+		<section id="zoom">
+			<div class="page-header">
+				<h1>缩放</h1>
+			</div>
+			<p>我们不得不面对一个事实，那就是光有滚动其实没什么新意的。这就是为什么在Scroller这个版本里我们允许你可以放 大和缩小。想要这个功能，只需要设置放大的参数zoom 为true即可实现利用手势来放大和缩小。你可以看看这儿。</p>
+			<p>双击放大和缩小的功能在iScroll 4里也是得到支持的。要使用缩放功能，你至少需要如下配置：</p>
+<pre class="prettyprint linenums">
+define(['fui/scroller/1.0'], function(Scroller) {
+	var myScroll = new Scroller({
+		container: '#wrapper',
+		zoom: true
+	});
+})
+</pre>
+			<p>如果你想对缩放功能进行深度的自定义的话可以使用下面的一些选项：</p>
+			<table class="table table-bordered table-striped">
+				<thead>
+				<tr>
+				<th style="width: 100px;">参数名</th>
+				<th>说明</th>
+				</tr>
+				</thead>
+				<tbody>
+				<tr>
+				<td>zoomMax</td>
+				<td>指定允许放大的最大倍数，默认为4</td>
+				</tr>
+				</tbody>
+			</table>
+			<div class="alert alert-info">
+				<strong>【注意事项】：</strong> 如果想要图片缩放的效果很好的话要把他们放到硬件的合成层中。通俗点说，就是在所有需要缩放的img元素上使用-webkit-transform:translate3d(0,0,0)来实现，而且尤为重要的是，硬件的加速会占用大量资源，要谨慎使用，否则你的应用可能就此崩溃。
+			</div>
+		</section>
+
+
+
+		<!-- 捕捉元素
+		================================================== -->
+		<section id="snap">
+			<div class="page-header">
+				<h1>捕捉元素</h1>
+			</div>
+			<p>捕捉的功能会促使scroller去重新定义位置，这样可以制作更加花哨的传送带效果。<a href="http://cubiq.org/dropbox/iscroll4/examples/carousel/" target="_blank">点击这里</a>有个小例子。</p>
+			<p>默认情况下，Scroller将滚动条分成四分体，或者是相同大小的wrapper。Scroller加入了这个属性允许捕捉scroller里的任何元素，不考虑外部wrapper的大小。如果你想要实现这样的传送带效果，我建议你使用“quadrant”分割。最佳的设置如下：</p>
+<pre class="prettyprint linenums">
+define(['fui/scroller/1.0'], function(Scroller) {
+	var myScroll = new Scroller({
+		container: '#wrapper',
+		snap:true, 
+		momentum:false, 
+		hScrollbar:false, 
+		vScrollbar: false
+	});
+})
+</pre>
+			<p>捕获元素，可以通过传递一个字符串来作为查询条件，如下：</p>
+<pre class="prettyprint linenums">
+define(['fui/scroller/1.0'], function(Scroller) {
+	var myScroll = new Scroller({
+		container: '#wrapper',
+		snap:"li", 
+		momentum:false, 
+		hScrollbar:false, 
+		vScrollbar: false
+	});
+})
+</pre>
+			<p>在这个例子中scroller可以捕捉到滚动区域中最左上角的li元素</p>
+		</section>
+
+
+		<!-- 自定义滚动条
+		================================================== -->
+		<section id="diy">
+			<div class="page-header">
+			  <h1>自定义滚动条</h1>
+			</div>
+
+			<p>在Scroller这个版本中，可以利用一系列的css来自定义滚动条的呈现。可以给滚动条添加一个class参数，如下：</p>
+<pre class="prettyprint linenums">
+define(['fui/scroller/1.0'], function(Scroller) {
+	var myScroll = new Scroller({
+		container: '#wrapper',
+		scrollbarClass: "myScrollbar"   // 注意：不是myScrollbarV哦，横向或纵向的scrollbar，Scroller会自动加上后缀
+	});
+})
+</pre>
+			<p>你可以<a href="http://cubiq.org/dropbox/iscroll4/examples/custom-scrollbar/" target="_blank">点击这里</a>看一个小例子，在这个小例子里，myScrollbarH这个类被添加到了水平滚动条上，myScrollbarV这个类则被添加给了垂直方向上的滚动条上了。需要提醒的是，滚动条是由两个元素组合而成的：容器和显示器。容器同wrapper的高度相同，而显示器则代表的是滚动条本身。</p>
+			<p>滚动条的HTML结构如下：</p>
+<pre class="prettyprint linenums">
+&lt;div class="myScrollbarV"&gt;
+	&lt;div&gt;&lt;/div&gt;
+&lt;/div&gt;
+
+.myScrollbarV{
+	position:absolute;z-index:100;width:8px;bottom:7px;top:2px;right:1px;
+}
+
+.myScrollbarV > div {
+	position:absolute;
+	z-index:100;
+	width:100%;
+	/* The following is probably what you want to customize */
+	background:-webkit-gradient(linear, 0 0, 100% 0, from(#f00), to(#900));
+	border:1px solid #800;
+	-webkit-background-clip:padding-box;
+	-webkit-box-sizing:border-box;
+	-webkit-border-radius:4px;
+	-webkit-box-shadow:inset 1px 1px 0 rgba(255,255,255,0.5);
+}
+</pre>	
+<p>Demo如下所示：</p>
+			<iframe src="../examples/custom-scrollbar.html" frameborder="0" width="100%" height="400px"></iframe>
+		  </section>
+
+
+
+	  </div>
+	</div>
+
+  </div>
+		</div>
+	</div>
+  
+  <script src="http://loftyjs.com/fdevlib/static/js/lofty/item.min.js"></script>
+	<script>
+		prettyPrint();
+	</script>
+  </body>
+</html>

@@ -1,0 +1,128 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+	<title>lofty 前端基础框架</title>
+	
+	<!-- Demo页面自身所需的基本样式，全局Reset文件在demo-mobile.min.css中引入 -->
+	<link href="http://loftyjs.com/fdevlib/static/css/lofty/demo-mobile.min.css" rel="stylesheet" />
+    <!-- 实际使用时将 $SkinType 替换为 "back" 或 "front" -->
+    <script type="text/javascript">
+        var cssUrls = "http://style.c.aliimg.com/m/lofty/ui/button/1.0/button.css";
+    </script>
+    <script src="http://style.c.aliimg.com/m/lofty/port/lofty.js"></script>
+    <script src="http://style.c.aliimg.com/m/lofty/gallery/appframework/af.js"></script>
+</head>
+<body style="height:500px">
+<button class="show-dialog">show-popup</button>
+<div class="fui-dialog-body fd-hide">
+    <button class="fui-btn-hint">提示信息</button>
+    <button class="fui-btn-checked">已选中</button>
+    <button id="confirm" class="fui-btn-action">确认下载</button>
+    <button id="close" class="fui-btn-important">确认关闭</button>
+</div>
+
+<div class="demo-content">
+<div class="demo-widget">
+ <div class="demo-widget-dom">	
+
+<style>
+    .show-dialog{
+        height: 32px;
+        padding: 2px 5px;
+    }
+    .fui-dialog-body{
+        width: 320px;
+        background-color: #f4f4f4;
+        border-radius: 5px;
+        padding: 16px 0;
+    }
+    .fui-dialog-body button {
+        display: block;
+        height: 30%;
+        margin: 5px auto;
+    }
+</style>
+
+<script>
+
+    define(['fui/popup/1.0','jquery'], function(Popup,$){
+        var onEvent = $.os.supportsTouch ? 'tap' : 'click';
+        var popup = new Popup({
+            tpl:".fui-dialog-body",
+            isModal:true,
+            beforeOpen:function(popup){
+                return true;
+            },
+            beforeClose:function(popup){
+            },
+            contentSuccess:function(popup){
+                popup.prepend($('<button class="fui-btn-disabled" disabled="disabled">动态插入的button</button>'));
+            },
+            buttons:[
+                {
+                    'event':onEvent,//事件类型
+                    'selector':'.fui-btn-hint',//要绑定事件的元素
+                    'callback':function(popup,paramObj){//事件的回调函数
+                        alert(paramObj.name);
+                        console.log(this);//这里的this指向的是当前的组件实例
+                    },
+                    'paramObj':{//回调函数要传入的参数(封装成对象便于管理)
+                        'name':'fui-btn-hint'
+                    }
+                },
+                {
+                    'event':onEvent,
+                    'selector':'.fui-btn-checked',
+                    'callback':function(popup,paramObj){
+                        alert(paramObj.name);
+                    },
+                    'paramObj':{
+                        'name':'fui-btn-checked'
+                    }
+                },
+                {
+                    'event':onEvent,
+                    'selector':'.fui-btn-action',
+                    'callback':function(popup,paramObj){
+                        alert(paramObj.name);
+                    },
+                    'paramObj':{
+                        'name':'fui-btn-action'
+                    }
+                },
+                {
+                    'event':onEvent,
+                    'selector':'.fui-btn-disabled',
+                    'callback':function(popup,paramObj){
+                        alert(paramObj.name);
+                    },
+                    'paramObj':{
+                        'name':'fui-btn-disabled'
+                    }
+                },
+                {
+                    'event':onEvent,
+                    'selector':'#close',
+                    'callback':function(popup,paramObj){
+                        this.hide();
+                    }
+                }
+            ]
+        });
+        //dialog显示
+        popup.show();
+        $(".show-dialog").on(onEvent,function(){
+            popup.show();
+        });
+    });
+
+</script>
+  </div>
+ </div>
+</div>
+<!-- Demo页面自身所需的JS，实际项目中无需引入 -->
+<script src="http://loftyjs.com/fdevlib/static/js/lofty/demo.min.js" type="text/javascript"></script>	
+</body>
+</html>

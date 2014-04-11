@@ -1,0 +1,40 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+	</head>
+	<body>
+		<script>
+			(function(win){
+				function callback(o){
+					var data = JSON.parse(o.data);
+					var response = {
+						proxyPageUrl:win.location.href,
+						_cross_domain_token:data._cross_domain_token
+					};
+					if(data._type === "read"){
+						response.data = localStorage.getItem(data._key);
+					} else if (data._type === "write"){
+						localStorage.setItem(data._key,data._value);
+						response.data = "success";
+					} else if (data._type === "clear"){
+						localStorage.clear();
+						response.data = "success";
+					} else if (data._type === "key"){
+						response.data = localStorage.key(data._index);
+					} else if (data._type === "length"){
+						response.data = localStorage.length;
+					} else if (data._type === "remove"){
+						localStorage.removeItem(data._key);
+						response.data = "success";
+					} 
+					window.parent.postMessage(JSON.stringify(response),"*");
+				}
+				win.addEventListener ? 
+					win.addEventListener("message", callback, false) : 
+					win.attachEvent("onmessage", callback);
+			})(this)
+		</script>
+
+	</body>
+</html>

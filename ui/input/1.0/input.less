@@ -1,0 +1,86 @@
+/**
+* @file input.less
+* @brief
+* @author lihao.ylh 2014-04-25 created
+* @updated 
+*/
+
+@import "../../base/1.0/global.less";
+
+@inputBorder: #ccc;
+@inputFocusedBorder: #169fff;
+@inputErrBorder: #ff5000;
+
+@inputHeight: 50px;
+@textareaHeight: 100px;
+@inputDelIconWidth: 20px;
+@inputDelIconHeight: 20px;
+
+.fui-input {
+	input {
+		width: 100%;
+		height: @inputHeight;
+		padding-left: 15px;
+		border: 1px solid @inputBorder;
+		border-radius: 5px;
+		font-size: 14px;
+		&:focus {
+			border: 1px solid @inputFocusedBorder;	
+		}
+	}
+	textarea {
+		width: 100%;
+		height: @textareaHeight;
+		padding: 15px;
+		border: 1px solid @inputBorder;
+		border-radius: 5px;
+		font-size: 14px;
+		&:focus {
+			border: 1px solid @inputFocusedBorder;	
+		}
+	}
+	.fui-input-hint {
+		position: relative;
+		padding-left: 20px;
+		margin-top: 8px;
+		color: @inputErrBorder;
+		font-size: 12px;
+		display: none;
+		&:before {
+			position: absolute;
+			top: 0;
+			left: 0;
+			display: inline-block;
+			width: 20px;
+			height: 20px;
+			background: url("@{fuiImgPath}/icon_warn_l.png") 0 0 no-repeat;
+			background-size: 80%;
+			content: '\0020';
+		}
+	}
+	[type="password"] {
+		font-size: 16px;
+		letter-spacing: 5px;
+	}
+}
+.fui-input-err {
+	input {
+		border: 1px solid @inputErrBorder;	
+	}
+	.fui-input-hint {
+		display: inline-block;
+	}
+}
+.fui-input-del {
+	position: relative;
+	.fui-input-del-icon {
+		width: @inputDelIconWidth;
+		height: @inputDelIconHeight;
+		line-height: 20px;
+		position: absolute;
+		right: 16px;
+		top: (@inputHeight - @inputDelIconHeight) / 2;
+		background: url("@{fuiImgPath}/public_icon_clear.png") no-repeat;
+		background-size: cover;
+	}
+}

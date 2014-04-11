@@ -1,0 +1,17 @@
+/**
+* @file iconfont.less
+* @brief
+* @author lihao.ylh 2014-04-25 created
+* @updated 
+*/
+/* iconfont字体文件因为受响应头字段Access-Control-Allow-Origin限制，需要配置，所以必须从cdn下载 */
+@fuiFontPath: "http://astyle.alicdn.com/m/lofty/assets/fonts";
+
+@font-face {
+	font-family: 'iconfont';
+    src: url('@{fuiFontPath}/iconfont.eot?t=20140311'); /* IE9*/
+    src: url('@{fuiFontPath}/iconfont.eot?#iefix&t=20140311') format('embedded-opentype'), /* IE6-IE8 */
+    url('@{fuiFontPath}/iconfont.woff?t=20140311') format('woff'), /* chrome、firefox */
+    url('@{fuiFontPath}/iconfont.ttf?t=20140311') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+    url('@{fuiFontPath}/iconfont.svg#uxiconfont?t=20140311') format('svg'); /* iOS 4.1- */
+}

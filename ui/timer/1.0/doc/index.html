@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+		<title>lofty 前端基础框架</title>
+        <meta name="viewport" content="initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+        <link rel="shortcut icon" href="favicon.ico" />
+		<link href="http://loftyjs.com/fdevlib/static/css/lofty/item.min.css" rel="stylesheet" />
+    </head>
+    <body>
+		<div class="doc" id="doc">
+			<div class="main">
+				<h1>timer : 倒计时
+					<div class="authorInfo">
+						<a href="http://amos.im.alisoft.com/msg.aw?v=2&amp;uid=xudanhust&amp;site=cntaobao&amp;s=1" target="_blank">
+							<img width="17" border="0" align="absMiddle" height="16" src="http://img.china.alibaba.com/cms/upload/search/fdevlib/alitalk.png">
+							<span class="author">许丹</span>
+						</a>
+				    </div>
+				</h1>
+				
+				<div class="row-fluid">
+					<div class="span19 demo-container">
+					  <iframe id="dpl_demo" class="demo-frame" width="100%" height="100%" frameborder="0"></iframe>
+					</div>
+					<div class="span4 nav-list">
+					  <h2 class="nav-title">示例</h2>
+					  <div id="dpl_menubar">
+					  
+					    <!--demo页面的路径统一放在这个json变量里面定义-->
+						<script type="text/javascript">
+							var demoArray = [
+								{'txt':'倒计时', 'href':'../examples/timer1.html'},
+								{'txt':'多阶段倒计时', 'href':'../examples/timer2.html'},
+								{'txt':'动画倒计时', 'href':'../examples/timer3.html'}
+							];
+						</script>
+					  </div>
+					</div>
+				</div>
+				
+				<h2>介绍</h2>
+				<p>倒计时组件</p>
+				
+				<h2>使用方法</h2>
+				
+<pre class="prettyprint linenums"> 
+define(['fui/timer/1.0'], function(Timer){
+	var timer = new Timer({
+		to: new Date(2020, 8, 24, 18, 47, 50),
+		el: '#timer'
+	});
+});
+</pre>			
+
+			<h2>配置参数</h2>
+				
+			  <table class="table table-striped">
+				<thead>
+					  <tr>
+					  <th class="name">配置参数</th>
+					  <th class="param">参数类型/可选值</th>
+					  <th class="return">参数默认值</th>
+					  <th class="function">作用说明</th>
+					  </tr>
+				  </thead>
+				  <tbody>
+					  <tr>
+						  <td>format </td>
+						  <td>String</td>
+						  <td>'y-M-d hh:mm:ss'</td>
+						  <td>设置时间的显示格式，双字母会在一位数时补0</td>
+					  </tr>
+					  <tr>
+						  <td>to </td>
+						  <td>Date | Array</td>
+						  <td>new Date()</td>
+						  <td>结束时间，若为Date类型，则是单阶段倒计时；若为数组 [Date1, Date2, ...]，则为多阶段倒计时</td>
+					  </tr>
+					  <tr>
+						  <td>stopEventName </td>
+						  <td>String | Array</td>
+						  <td>'stop'</td>
+						  <td>结束后触发的事件名，与to对应。倒计时为单阶段时，用String类型，倒计时结束时触发；多阶段时，用Array类型：[String1, String2, ...]，每个阶段结束时触发对应的事件名</td>
+					  </tr>			  
+					  <tr>
+						  <td>useServerTime</td>
+						  <td>Boolean</td>
+						  <td>false</td>
+						  <td>是否使用服务器时间</td>
+					  </tr>
+					  <tr>
+						  <td>animate</td>
+						  <td>Boolean</td>
+						  <td>false</td>
+						  <td>是否动画显示（动画显示需要配合css文件）<br />改成了css3Animate(洪珊珊)</td>
+					  </tr>
+					  <tr>
+						  <td>fixInterval</td>
+						  <td>Boolean</td>
+						  <td>false</td>
+						  <td>是否做跑偏修正（每60秒修正一次）</td>
+					  </tr>
+					  <tr>
+						  <td>autoStart</td>
+						  <td>Boolean</td>
+						  <td>false</td>
+						  <td>是否自动开始</td>
+					  </tr>			  
+                 </tbody>
+			  </table>
+			  
+				<h2>公共方法</h2>
+				
+				<table class="table table-striped">
+				<thead>
+					  <tr>
+					  <th class="name">方法名称</th>
+					  <th class="param">入参说明</th>
+					  <th class="return">返回值</th>
+					  <th class="function">作用说明</th>
+					  </tr>
+				  </thead>
+				  <tbody>
+					  <tr>
+						  <td>start()</td>
+						  <td>/</td>
+						  <td>Timer对象自身</td>
+						  <td>开始倒计时</td>
+					  </tr>
+					  <tr>
+						  <td>stop()</td>
+						  <td>/</td>
+						  <td>Timer对象自身</td>
+						  <td>结束倒计时</td>
+					  </tr>
+					  <tr>
+						  <td>setStartTime(date)</td>
+						  <td>date：需要设置的新时间（Date或String类型）</td>
+						  <td>Timer对象自身</td>
+						  <td>设置开始时间，此方法主要用来调试，在console中直接执行，更改当前时间</td>
+					  </tr>
+                 </tbody>
+			  </table>
+
+
+				<h2>事件</h2>
+				
+				<table class="table table-striped">
+				<thead>
+					  <tr>
+					  <th class="name">事件名称</th>
+					  <th class="function">事件说明</th>
+					  </tr>
+				  </thead>
+				  <tbody>
+					  <tr>
+						  <td>stop </td>
+						  <td>倒计时结束时触发，事件名可以修改，详见配置参数<strong>stopEventName</strong></td>
+					  </tr>
+                 </tbody>
+			  </table>
+			  
+			</div>
+		</div>
+		<script src="http://loftyjs.com/fdevlib/static/js/lofty/item.min.js"></script>
+		<script>
+			prettyPrint();
+		</script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+{
+    "data": {
+        "advcontent": {
+            "startTime":"0",
+            "id":"1",
+            "content": "活动说明活动说明活动说明活动说明活动说明活动说明活动说明活动说明",
+            "actionMode":"1",
+            "actionType":"1",
+            "place":"test",
+            "endTime":"0",
+            "viewType": "2",
+            "modifyTime":"0",
+            "picList": [{
+                "navUrl": "http://m.1688.com",
+                "picUrl": "http://img.f2e.taobao.net/img.png?x=720x360"
+            }, {
+                "navUrl": "http://m.1688.com",
+                "picUrl": "http://img.f2e.taobao.net/img.png?x=720x360"
+            }, {
+                "navUrl": "http://m.1688.com",
+                "picUrl": "http://img.f2e.taobao.net/img.png?x=720x360"
+            }, {
+                "navUrl": "http://m.1688.com",
+                "picUrl": "http://img.f2e.taobao.net/img.png?x=720x360"
+            }],
+            "actionUrl":"http://m.1688.com",
+            "close": "false"
+        }
+    }
+}

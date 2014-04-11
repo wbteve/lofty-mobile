@@ -1,0 +1,28 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>lofty 前端基础框架</title>
+	<script src="http://style.c.aliimg.com/m/lofty/port/lofty.js"></script>
+    <script src="http://style.c.aliimg.com/m/lofty/gallery/appframework/af.js"></script>
+	<script type="text/javascript">
+		lofty.config({
+			appdescription:{
+				name:"offer",
+				deps:['lofty']
+			}
+		})
+	</script>
+	<script src="http://style.c.aliimg.com/m/lofty/alicn/cache/1.0/cache.js"></script>
+</head>
+<body>
+	
+   <div id="result"></div>
+   <script type="text/javascript">
+     define(['fui/actionsheet/1.0'], function() {
+		console.log(arguments);
+	})
+
+   </script>
+</body>
+</html>
